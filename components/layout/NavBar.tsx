@@ -15,13 +15,13 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Container } from "@mui/system";
-import styles from "./navbar.module.css";
 import NavBarButton from "../fragments/NavBarButton";
 import Link from "next/link";
 import Image from "next/image";
 import { GetStaticProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
+import styles from "./nav.module.css";
 
 interface Props {
   /**
