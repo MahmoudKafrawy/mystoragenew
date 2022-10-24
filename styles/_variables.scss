@@ -1,0 +1,24 @@
+// $theme-colors: (
+//   'primary': #01579b,
+//   'secondary': #0181e7,
+// );
+
+// :export {
+//   @each $key, $value in $theme-colors {
+//     $key: $value;
+//   }
+// }
+
+$theme-colors: (
+    'primary': #01579b,
+    'primaryText': #ffffff,
+    'secondary': #0181e7,
+    'secondaryText': #7e621d,
+);
+
+
+@each $color, $value in $theme-colors {
+  :export{
+    $color: $value;
+  }
+}

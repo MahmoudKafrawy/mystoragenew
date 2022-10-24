@@ -1,0 +1,41 @@
+{
+  "creditCard": {
+    "number": "Credit Card Number",
+    "cvv": "CVV",
+    "expiry": "Expiry Date"
+  },
+  "paynow": "Pay now",
+  "paymentTitles": {
+    "Order": "Order Payment",
+    "Package": "Package Payment",
+    "Deposit": "Wallet Deposit",
+    "Shipping": "Shipping",
+    "Delivery": "Delivery Request"
+  },
+  "depositAmount": "Deposit amount",
+  "paymentMethods": {
+    "All": "All",
+    "Credit Card": "Credit Card",
+    "Fawry": "Fawry",
+    "Bank Transfer": "Bank Transfer",
+    "Wallet": "Wallet",
+    "Office": "Office"
+  },
+  "stripeErrors": {
+    "invalid_number": "The card number is not a valid credit card number",
+    "invalid_expiry_month": "The card’s expiration month is invalid",
+    "invalid_expiry_year": "The card’s expiration year is invalid",
+    "invalid_cvc": "The card’s security code is invalid",
+    "incorrect_number": "The card number is incorrect",
+    "incomplete_number": "The card number is incomplete",
+    "incomplete_cvc": "The card’s security code is incomplete",
+    "incomplete_expiry": "The card’s expiration date is incomplete",
+    "expired_card": "The card has expired",
+    "incorrect_cvc": "The card’s security code is incorrect",
+    "incorrect_zip": "The card’s zip code failed validation",
+    "invalid_expiry_year_past": "The card’s expiration year is in the past",
+    "card_declined": "The card was declined",
+    "missing": "There is no card on a customer that is being charged",
+    "processing_error": "An error occurred while processing the card"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "fields": {
+    "email": "عنوان البريد الإلكتروني",
+    "password": "كلمه السر",
+    "confirmPassword": "اكد كلمه السر",
+    "phone": "رقم التليفون",
+    "message": "رسالة",
+    "Comment": "تعليق",
+    "name": "الاسم",
+    "firstName": "الاسم الأول",
+    "lastName": "اسم العائلة",
+    "address": "العنوان",
+    "city": "المدينة",
+    "country": "البلد",
+    "oldPassword": "كلمة السر القديمة",
+    "street": "اسم الشارع",
+    "building": "رقم المبنى",
+    "floor": "طابق",
+    "apartment": "شقة",
+    "amount": "مبلغ",
+    "bankName": "اسم البنك",
+    "bankBranch": "فرع بنك",
+    "accountName": "أسم الحساب",
+    "accountNumber": "رقم الحساب المصرفي"
+  },
+  "validationErrorMessage": {
+    "email": "بريد إلكتروني غير صحيح",
+    "emailEmpty": "الرجاء إدخال عنوان البريد الإلكتروني الخاص بك",
+    "password": "يجب ألا يقل عن 8 أحرف",
+    "confirmPassword": "كلمة المرور غير مطابقة",
+    "phone": "رقم هاتف غير صحيح",
+    "required": "هذه الخانة مطلوبه",
+    "name": "يجب ألا يقل عن 3 أحرف",
+    "firstName": "يجب ألا يقل عن 3 أحرف",
+    "lastName": "يجب ألا يقل عن 3 أحرف",
+    "address": "هذه الخانة مطلوبه",
+    "city": "هذه الخانة مطلوبه",
+    "country": "هذه الخانة مطلوبه",
+    "oldPassword": "يجب ألا يقل عن 8 أحرف",
+    "street": "هذه الخانة مطلوبه",
+    "building": "هذه الخانة مطلوبه",
+    "floor": "هذه الخانة مطلوبه",
+    "apartment": "هذه الخانة مطلوبه",
+    "amount": "يجب أن يكون مبلغًا موجبًا غير فارغ."
+  },
+  "questions": {
+    "forgotPassword": "نسيت كلمة السر؟",
+    "noAccountYet": "ليس لديك حساب؟"
+  }
+}

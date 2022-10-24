@@ -1,0 +1,50 @@
+{
+  "fields": {
+    "email": "Email Address",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "phone": "Phone Number",
+    "message": "Message",
+    "Comment": "Comment",
+    "name": "Name",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "address": "Address",
+    "city": "City",
+    "country": "Country",
+    "oldPassword": "Old Password",
+    "street": "Street Name",
+    "building": "Building Number",
+    "floor": "Floor",
+    "apartment": "Apartment",
+    "amount": "Amount",
+    "bankName": "Bank Name",
+    "bankBranch": "Bank Branch",
+    "accountName": "Account Name",
+    "accountNumber": "Bank Account Number"
+  },
+  "validationErrorMessage": {
+    "email": "Incorrect email format.",
+    "emailEmpty": "Please enter your email address.",
+    "password": "Should be at least 8 characters.",
+    "confirmPassword": "Passwords do not match.",
+    "phone": "Incorrect phone number",
+    "required": "This field is required.",
+    "name": "Should at least be 3 characters.",
+    "firstName": "Should at least be 3 characters.",
+    "lastName": "Should at least be 3 characters.",
+    "address": "This field is required.",
+    "city": "This field is required.",
+    "country": "This field is required.",
+    "oldPassword": "Should be at least 8 characters.",
+    "street": "This field is required.",
+    "building": "This field is required.",
+    "floor": "This field is required.",
+    "apartment": "This field is required.",
+    "amount": "Must be a non empty positive amount."
+  },
+  "questions": {
+    "forgotPassword": "Forgot your password?",
+    "noAccountYet": "Don't have an account yet?"
+  }
+}

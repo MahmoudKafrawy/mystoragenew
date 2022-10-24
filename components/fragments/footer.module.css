@@ -1,0 +1,9 @@
+.button {
+  color: grey;
+  margin: 5px 0;
+  cursor: pointer;
+  font-weight: 500;
+}
+.button:hover {
+  color: orange;
+}

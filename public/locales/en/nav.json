@@ -1,0 +1,23 @@
+{
+  "routes": {
+    "home": "Home",
+    "ourStory" :"Our story",
+    "service":"Service",
+    "howItWorks": "How it works",
+    "contact":"Contact",
+    "login":"Login",
+    "calculate":"Calculate",
+    "calculateShipping": "Calculate Shipping",
+    "account": {
+      "Account": "Account",
+      "personal": "Personal Information",
+      "packages": "Packages",
+      "addresses": "Addresses",
+      "logout": "Logout",
+      "deliveries": "Delivery Requests",
+      "cartons": "Cartons",
+      "transactions": "Transactions",
+      "wallet": "Wallet"
+    }
+  }
+}

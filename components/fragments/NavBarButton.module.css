@@ -1,0 +1,13 @@
+.button {
+  background-color: transparent;
+  color: black !important;
+  font-weight: 600;
+  margin: 0 2px;
+}
+.calculateButton {
+  font-family: "Ubuntu";
+  font-weight: 700;
+  border-radius: 0;
+  background-color: #ff9a28;
+  color: white;
+}

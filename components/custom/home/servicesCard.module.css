@@ -1,0 +1,23 @@
+.parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.title {
+  font-size: 1.25rem;
+  margin: 20px 0;
+}
+.paragraph {
+  font-size: 1rem;
+  text-align: center;
+  width: 200px;
+}
+.img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background-color: orange;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

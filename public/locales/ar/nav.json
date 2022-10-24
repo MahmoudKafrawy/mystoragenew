@@ -1,0 +1,23 @@
+{
+  "routes": {
+    "home": "الرئيسيه",
+    "ourStory" :"عن الشركه",
+    "service":"خدمات",
+    "howItWorks": "كيف يعمل",
+    "contact":"تواصل",
+    "login":"دخول",
+    "calculate":"حساب التكلفة",
+    "calculateShipping": "حساب الشحن",
+    "account": {
+      "Account": "حساب",
+      "personal": "معلومات شخصية",
+      "packages": "الصناديق",
+      "addresses": "عناوين",
+      "logout": "الخروج",
+      "deliveries": "طلبات التسليم",
+      "cartons": "الكراتين",
+      "transactions": "المعاملات",
+      "wallet": "المحفظة"
+    }
+  }
+}

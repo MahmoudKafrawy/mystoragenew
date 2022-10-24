@@ -1,0 +1,20 @@
+{
+  "follow": "Follow",
+  "3": "3",
+  "simpleSteps": "Simple Steps!",
+  "weAreExperts": "We are the experts at helping people get what they love from the US",
+  "steps": {
+    "1": {
+      "label": "Sign up",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus ratione, consequatur, dolorum officia culpa inventore dignissimos ipsam placeat nulla labore rerum et sapiente voluptate tempore animi adipisci corporis similique sit."
+    },
+    "2": {
+      "label": "Shop Online",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus ratione, consequatur, dolorum officia culpa inventore dignissimos ipsam placeat nulla labore rerum et sapiente voluptate tempore animi adipisci corporis similique sit."
+    },
+    "3": {
+      "label": "Get your package",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus ratione, consequatur, dolorum officia culpa inventore dignissimos ipsam placeat nulla labore rerum et sapiente voluptate tempore animi adipisci corporis similique sit."
+    }
+  }
+}

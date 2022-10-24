@@ -1,0 +1,11 @@
+.navBar {
+  font-family: "Ubuntu";
+  background-color: white !important;
+  box-shadow: none !important;
+}
+.navBarLogo {
+  color: #ff9a28;
+  font-weight: 600;
+}
+.test {
+}

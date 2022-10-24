@@ -1,0 +1,65 @@
+.parent {
+  height: 900px;
+  background-image: url("/images/slider4.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.gradient {
+  width: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.9) 100%);
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.paragraph {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.paper {
+  padding: 20px;
+  width: 690px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: rgba(53, 53, 53, 0.5) 0px 5px 10px;
+}
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #292929;
+}
+.subTitle {
+  margin: 8px 0;
+  color: #878990;
+  font-size: 14px;
+  font-weight: 400;
+}
+.divider {
+  margin: 10px 0;
+  width: 100%;
+  height: 1px;
+  background-color: #e4e4e4;
+}
+.radioText span:last-child {
+  font-size: 14px;
+  font-weight: 600;
+  color: #878990;
+}
+.input {
+  border-radius: 10px;
+}
+.button {
+  margin: 10px 0;
+  width: 200px;
+  background-color: #ff9a28;
+  color: white;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.button:hover {
+  color: #ff9a28;
+  background-color: white;
+}

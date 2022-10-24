@@ -1,0 +1,41 @@
+{
+  "creditCard": {
+    "number": "رقم بطاقة الائتمان",
+    "cvv": "CVV",
+    "expiry": "تاريخ الانتهاء"
+  },
+  "paynow": "ادفع الان",
+  "paymentTitles": {
+    "Order": " دفع طلب ",
+    "Package": "طرد",
+    "Deposit": " إيداع للمحفظة",
+    "Shipping": "شحن",
+    "Delivery": "طلب توصيل"
+  },
+  "depositAmount": "قيمة الايداع",
+  "paymentMethods": {
+    "All": "الكل",
+    "Credit Card": "بطاقة إئتمان",
+    "Fawry": "فوري",
+    "Bank Transfer": "التحويل المصرفي",
+    "Wallet": "محفظة",
+    "Office": "مكتب"
+  },
+  "stripeErrors": {
+    "invalid_number": "رقم البطاقة ليس رقم بطاقة ائتمان صالح",
+    "invalid_expiry_month": "شهر انتهاء صلاحية البطاقة غير صالح",
+    "invalid_expiry_year": "سنة انتهاء صلاحية البطاقة غير صالحة",
+    "invalid_cvc": "رمز أمان البطاقة غير صالح",
+    "incorrect_number": "رقم البطاقة غير صحيح",
+    "incomplete_number": "رقم البطاقة غير مكتمل",
+    "incomplete_cvc": "رمز أمان البطاقة غير مكتمل",
+    "incomplete_expiry": "تاريخ انتهاء صلاحية البطاقة غير مكتمل",
+    "expired_card": "انتهت صلاحية البطاقة",
+    "incorrect_cvc": "رمز أمان البطاقة غير صحيح",
+    "incorrect_zip": "فشل التحقق من صحة الرمز البريدي للبطاقة",
+    "invalid_expiry_year_past": "سنة انتهاء صلاحية البطاقة في الماضي",
+    "card_declined": "تم رفض البطاقة",
+    "missing": "لا توجد بطاقة على العميل يتم تحصيل رسوم منها",
+    "processing_error": "حدث خطأ أثناء معالجة البطاقة"
+  }
+}
