@@ -1,13 +1,13 @@
 .button {
-  background-color: transparent;
+  background-color: transparent !important;
   color: black !important;
-  font-weight: 600;
-  margin: 0 2px;
+  font-weight: 600 !important;
+  margin: 0 2px !important;
 }
 .calculateButton {
-  font-family: "Ubuntu";
-  font-weight: 700;
-  border-radius: 0;
-  background-color: #ff9a28;
-  color: white;
+  font-family: "Ubuntu" !important;
+  font-weight: 700 !important;
+  border-radius: 0 !important;
+  background-color: #ff9a28 !important;
+  color: white !important;
 }
