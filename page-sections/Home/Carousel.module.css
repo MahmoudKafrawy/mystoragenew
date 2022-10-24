@@ -13,35 +13,35 @@
   left: 7%;
 }
 .title {
-  font-family: "Ubuntu";
-  color: white;
-  font-weight: 500;
-  font-size: 50px;
-  font-weight: 600;
-  margin-bottom: 20px;
+  font-family: "Ubuntu" !important;
+  color: white !important;
+  font-weight: 500 !important;
+  font-size: 50px !important;
+  font-weight: 600 !important;
+  margin-bottom: 20px !important;
 }
 
 .paragraphOne {
-  font-family: "Ubuntu";
-  color: rgba(255, 255, 255, 0.75);
-  font-weight: 500;
-  font-size: 30px;
+  font-family: "Ubuntu" !important;
+  color: rgba(255, 255, 255, 0.75) !important;
+  font-weight: 500 !important;
+  font-size: 30px !important;
 }
 .paragraphTwo {
-  font-family: "Ubuntu";
-  color: rgba(255, 255, 255, 0.75);
-  font-weight: 500;
-  font-size: 18px;
-  width: 550px;
+  font-family: "Ubuntu" !important;
+  color: rgba(255, 255, 255, 0.75) !important;
+  font-weight: 500 !important;
+  font-size: 18px !important;
+  width: 550px !important;
 }
 .button {
-  margin-top: 20px;
-  background-color: orange;
-  color: white;
-  font-weight: 400;
-  width: 150px;
-  height: 50px;
-  font-size: 20px;
+  margin-top: 20px !important;
+  background-color: orange !important;
+  color: white !important;
+  font-weight: 400 !important;
+  width: 150px !important;
+  height: 50px !important;
+  font-size: 20px !important;
 }
 
 @media (max-width: 900px) {
