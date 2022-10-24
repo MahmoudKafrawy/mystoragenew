@@ -1,7 +1,7 @@
 import { Typography, Box } from "@mui/material";
 import Image from "next/image";
 import React from "react";
-import styles from "./howItWorksCard.module.css";
+import styles from "./how-it-work-card.module.css";
 
 interface HowItWorksCardProps {
   title: string;
