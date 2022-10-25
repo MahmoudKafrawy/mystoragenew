@@ -6,7 +6,6 @@ import Carousel from "../page-sections/Home/Carousel";
 import HowItWorks from "../page-sections/Home/HowItWorks";
 import OurWareHouseLocation from "../page-sections/Home/OurWareHouseLocation";
 import Services from "../page-sections/Home/Services";
-import styles from "../styles/Home.module.scss";
 
 const Home: NextPage = () => {
   const { t } = useTranslation("common");

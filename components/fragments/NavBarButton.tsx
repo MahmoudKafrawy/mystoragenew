@@ -9,7 +9,11 @@ const NavBarButton: React.FC<NavBarButtonProps> = ({ title }) => {
   if (title === "Calculate") {
     return <Button className={styles.calculateButton}>{title}</Button>;
   }
-  return <Button className={styles.button}>{title}</Button>;
+  return (
+    <Button sx={{ display: { xs: "none", sm: "block" } }} className={styles.button}>
+      {title}
+    </Button>
+  );
 };
 
 export default NavBarButton;

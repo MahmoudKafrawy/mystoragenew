@@ -22,6 +22,7 @@ import { GetStaticProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import styles from "./nav.module.css";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
 
 interface Props {
   /**
@@ -88,16 +89,19 @@ const NavBar = (props: Props) => {
               <Box sx={{ display: "flex", justifyContent: "flex-start", alignItems: "center" }}>
                 <Image src="/images/logo.png" width="40" height="40" alt="" />
                 <Link href="/">
-                  <Typography sx={{ fontWeight: 600 }}>MY STORAGE</Typography>
+                  <Typography sx={{ fontWeight: 600, fontSize: "min(3vw,14px)" }}>MY STORAGE</Typography>
                 </Link>
               </Box>
             </Typography>
-            <Box sx={{ display: { xs: "none", md: "block" }, marginRight: 3 }}>
+            <Box sx={{ display: { xs: "none", md: "flex" }, marginRight: 3 }}>
               {navItems.map((item, index) => (
                 <NavBarButton key={index} title={t(`${item}`)}></NavBarButton>
               ))}
             </Box>
-            <Box sx={{ display: { md: "block" } }}>
+            <Box sx={{ display: "flex" }}>
+              <Link href="/login">
+                <AccountBoxIcon sx={{ color: "#393939" }} />
+              </Link>
               {["routes.login", "routes.calculate"].map((item, index) => (
                 <Link href="/login" key={index}>
                   <a>
