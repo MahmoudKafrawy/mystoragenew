@@ -1,4 +1,4 @@
-import { Box, Stack } from "@mui/material";
+import { Box, Grid, Stack } from "@mui/material";
 import React from "react";
 import HowItWorksCard from "../../components/custom/home/HowItWorksCard";
 import styles from "./sections.module.css";
@@ -14,11 +14,13 @@ const HowItWorks = () => {
         Egypt!
       </Box>
       <Box className={styles.divider}></Box>
-      <Box className={styles.cards}>
+      <Grid container className={styles.cards}>
         {howItWorksPhotos.map((item) => (
-          <HowItWorksCard key={item} title={`0${item}`} paragraph="test" img={`/images/howitworks/${item}.png`} />
+          <Grid item xs={6} md={3} className={styles.parent}>
+            <HowItWorksCard key={item} title={`0${item}`} paragraph="test" img={`/images/howitworks/${item}.png`} />
+          </Grid>
         ))}
-      </Box>
+      </Grid>
     </Stack>
   );
 };

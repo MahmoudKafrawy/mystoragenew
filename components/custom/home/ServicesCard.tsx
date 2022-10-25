@@ -12,7 +12,7 @@ const ServicesCard: React.FC<ServicesCardProps> = ({ title, paragraph, img }) =>
   return (
     <Stack className={styles.parent}>
       <Box className={styles.img}>
-        <Image src={img} width="40" height="40" alt="" />
+        <Image src={img} width="35" height="35" alt="" />
       </Box>
       <Box className={styles.title}>Personalized address</Box>
       <Box className={styles.paragraph}>My storage offers you an address to receive your package</Box>

@@ -9,6 +9,7 @@
   align-items: center;
   flex-direction: column;
   padding: 10px;
+  margin: 0 5px;
 }
 .number {
   position: absolute;
