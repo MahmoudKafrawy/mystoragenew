@@ -331,6 +331,8 @@ function Previews({ title, register, error }: PreviewsProps) {
     [isFocused, isDragAccept, isDragReject]
   );
 
+  console.log(files, register.name);
+
   return (
     <section className="container">
       <div {...getRootProps({ style })}>
