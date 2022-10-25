@@ -63,3 +63,8 @@
   color: #ff9a28;
   background-color: white;
 }
+.errorMsg {
+  height: 0px;
+  margin: 0;
+  padding: 0;
+}

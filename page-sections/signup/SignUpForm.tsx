@@ -21,87 +21,163 @@ import { useAuth } from "../../contexts/AuthContext";
 import styles from "./signUpForm.module.css";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import countries from "../../common/countries";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
-const accountType = ["export freight", "Shipping releases", "export customs", "Customs Publications"];
 const SignUpForm = () => {
+  const accountType = ["export freight", "Shipping releases", "export customs", "Customs Publications"];
+
+  type Inputs = {
+    firstName: string;
+    lastName: string;
+    phone: number;
+    accountType: string;
+    nationalID: number;
+    email: string;
+    password: string;
+  };
+
+  const schema = yup
+    .object({
+      firstName: yup.string().required(),
+      lastName: yup.string().required(),
+      phone: yup.string().required(),
+      accountType: yup.number().required(),
+      nationalID: yup.number().required(),
+      email: yup.string().required().email(),
+      password: yup.string().required(),
+    })
+    .required();
+
+  const {
+    control,
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<Inputs>({ resolver: yupResolver(schema) });
+  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const { t } = useTranslation();
+
   return (
     <>
       <Box className={styles.parent}>
         <Box className={styles.gradient}>
           <Box className={styles.paper}>
-            <Box className={styles.title}>Sign up</Box>
-            <Box className={styles.divider}></Box>
-            <Grid container spacing={2}>
-              <Grid item xs={6}>
-                <Box>
-                  <Typography className={styles.subTitle}>First name</Typography>
-                  <TextField placeholder="Your First name" type="text" fullWidth={true} size="small" />
-                </Box>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Box className={styles.title}>Sign up</Box>
+              <Box className={styles.divider}></Box>
+              <Grid container spacing={2}>
+                <Grid item xs={6}>
+                  <Box>
+                    <Typography className={styles.subTitle}>First name</Typography>
+                    <TextField
+                      placeholder="Your First name"
+                      type="text"
+                      fullWidth={true}
+                      size="small"
+                      {...register("firstName")}
+                      error={errors?.firstName ? true : false}
+                      helperText={errors?.firstName ? errors.firstName.message : null}
+                    />
+                  </Box>
+                </Grid>
+                <Grid item xs={6}>
+                  <Box>
+                    <Typography className={styles.subTitle}>Last name</Typography>
+                    <TextField
+                      placeholder="Your Last name"
+                      type="text"
+                      fullWidth={true}
+                      size="small"
+                      {...register("lastName")}
+                      error={errors?.lastName ? true : false}
+                      helperText={errors?.lastName ? errors.lastName.message : null}
+                    />
+                  </Box>
+                </Grid>
               </Grid>
-              <Grid item xs={6}>
-                <Box>
-                  <Typography className={styles.subTitle}>Last name</Typography>
-                  <TextField placeholder="Your Last name" type="text" fullWidth={true} size="small" />
-                </Box>
+              <Typography className={styles.subTitle}>Phone</Typography>
+              <Grid container direction="row">
+                <Grid item xs={2}>
+                  <Select
+                    autoWidth
+                    size="small"
+                    labelId="demo-simple-select-helper-label"
+                    id="demo-simple-select-helper"
+                    // value="test"
+                    // value={age}
+                    // onChange={handleChange}
+                    sx={{ minWidth: "90%" }}
+                  >
+                    <MenuItem value="">
+                      <em>None</em>
+                    </MenuItem>
+                    {countries.map((country) => (
+                      <MenuItem key={country.name}>{`${country.flag}${country.dial_code}`}</MenuItem>
+                    ))}
+                  </Select>
+                </Grid>
+                <Grid item xs={10}>
+                  <TextField
+                    type="text"
+                    size="small"
+                    fullWidth={true}
+                    {...register("phone")}
+                    error={errors?.phone ? true : false}
+                    helperText={errors?.phone ? errors.phone.message : null}
+                  />
+                </Grid>
               </Grid>
-            </Grid>
-            <Typography className={styles.subTitle}>Phone</Typography>
-            <Grid container direction="row">
-              <Grid item xs={2}>
-                <Select
-                  autoWidth
-                  size="small"
-                  labelId="demo-simple-select-helper-label"
-                  id="demo-simple-select-helper"
-                  value="test"
-                  // value={age}
-                  // onChange={handleChange}
-                  sx={{ minWidth: "90%" }}
-                >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  {countries.map((country) => (
-                    <MenuItem key={country.name} value={10}>{`${country.flag}${country.dial_code}`}</MenuItem>
-                  ))}
-                </Select>
+              <Box>
+                <Typography className={styles.subTitle}>Account type</Typography>
+                <FormControl>
+                  {/* <FormLabel id="demo-row-radio-buttons-group-label">Account type</FormLabel> */}
+                  <RadioGroup row aria-labelledby="demo-row-radio-buttons-group-label" name="row-radio-buttons-group">
+                    {accountType.map((item) => (
+                      <FormControlLabel
+                        key={item}
+                        value={item}
+                        control={<Radio />}
+                        label={item}
+                        className={styles.radioText}
+                        {...register("accountType")}
+                      />
+                    ))}
+                  </RadioGroup>
+                </FormControl>
+              </Box>
+              <Typography className={styles.subTitle}>National ID</Typography>
+              <TextField
+                type="text"
+                fullWidth={true}
+                size="small"
+                {...register("nationalID")}
+                error={errors?.nationalID ? true : false}
+                helperText={errors?.nationalID ? errors.nationalID.message : null}
+              />
+              <Grid container spacing={2}>
+                <Grid item xs={6}>
+                  <Previews title="Front National ID" />
+                </Grid>
+                <Grid item xs={6}>
+                  <Previews title="Back National ID" />
+                </Grid>
               </Grid>
-              <Grid item xs={10}>
-                <TextField type="text" size="small" fullWidth={true} />
-              </Grid>
-            </Grid>
-            <Box>
-              <Typography className={styles.subTitle}>Account type</Typography>
-              <FormControl>
-                {/* <FormLabel id="demo-row-radio-buttons-group-label">Account type</FormLabel> */}
-                <RadioGroup row aria-labelledby="demo-row-radio-buttons-group-label" name="row-radio-buttons-group">
-                  {accountType.map((item) => (
-                    <FormControlLabel value={item} control={<Radio />} label={item} className={styles.radioText} />
-                  ))}
-                </RadioGroup>
-              </FormControl>
-            </Box>
-            <Typography className={styles.subTitle}>National ID</Typography>
-            <TextField type="text" fullWidth={true} size="small" />
-            <Grid container spacing={2}>
-              <Grid item xs={6}>
-                <Previews title="Front National ID" />
-              </Grid>
-              <Grid item xs={6}>
-                <Previews title="Back National ID" />
-              </Grid>
-            </Grid>
-            <Box>
-              <Typography className={styles.subTitle}>Commercial Record Number</Typography>
-              <Previews title="Browse" />
-            </Box>
-            <Box>
-              <Typography className={styles.subTitle}>Tax Card Number</Typography>
-              <Previews title="Browse" />
-            </Box>
-            <Box sx={{ display: "flex", justifyContent: "center" }}>
-              <Button className={styles.button}>Send</Button>
-            </Box>
+              <Box>
+                <Typography className={styles.subTitle}>Commercial Record Number</Typography>
+                <Previews title="Browse" />
+              </Box>
+              <Box>
+                <Typography className={styles.subTitle}>Tax Card Number</Typography>
+                <Previews title="Browse" />
+              </Box>
+              <Box sx={{ display: "flex", justifyContent: "center" }}>
+                <Button className={styles.button} type="submit">
+                  Send
+                </Button>
+              </Box>
+            </form>
           </Box>
         </Box>
       </Box>

@@ -89,7 +89,9 @@ const NavBar = (props: Props) => {
               <Box sx={{ display: "flex", justifyContent: "flex-start", alignItems: "center" }}>
                 <Image src="/images/logo.png" width="40" height="40" alt="" />
                 <Link href="/">
-                  <Typography sx={{ fontWeight: 600, fontSize: "min(3vw,14px)" }}>MY STORAGE</Typography>
+                  <Typography sx={{ fontWeight: 600, fontSize: "min(3vw,14px)", cursor: "pointer" }}>
+                    MY STORAGE
+                  </Typography>
                 </Link>
               </Box>
             </Typography>
