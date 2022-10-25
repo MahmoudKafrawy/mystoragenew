@@ -1,18 +1,25 @@
 import { Box, Button, Checkbox, FormControlLabel, InputAdornment, OutlinedInput, TextField } from "@mui/material";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { FormInputText } from "../../components/controlled/FormInputText";
-import Typography from "@mui/material/Typography";
 import { useTranslation } from "next-i18next";
 import { useAuth } from "../../contexts/AuthContext";
 import styles from "./LoginForm.module.css";
 import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
 import Link from "next/link";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 type Inputs = {
   email: string;
   password: string;
 };
+
+const schema = yup
+  .object({
+    email: yup.string().required().email(),
+    password: yup.string().required(),
+  })
+  .required();
 
 const LoginFrom = () => {
   const {
@@ -21,7 +28,7 @@ const LoginFrom = () => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<Inputs>({ resolver: yupResolver(schema) });
   const onSubmit: SubmitHandler<Inputs> = (errors) => console.log(errors);
   const { t } = useTranslation();
 
@@ -36,58 +43,58 @@ const LoginFrom = () => {
             <Box className={styles.paragraph}>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae, modi as
             </Box>
-            <Box className={styles.inputGroup}>
-              {/* <Box className={styles.input}>
-                <EmailIcon sx={{ color: "#999ca3" }} />
-                <TextField variant="filled" label="Email" fullWidth={true} InputProps={{ disableUnderline: true }} />
-              </Box> */}
-              <TextField
-                type="Email"
-                placeholder="Email"
-                variant="standard"
-                fullWidth={true}
-                sx={{ backgroundColor: "transparent", height: 40 }}
-                InputProps={{
-                  disableUnderline: true,
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <EmailIcon />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              <TextField
-                type="password"
-                placeholder="password"
-                variant="standard"
-                fullWidth={true}
-                style={{ backgroundColor: "transparent", height: 40 }}
-                InputProps={{
-                  disableUnderline: true,
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <LockIcon />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              {/* <Box className={styles.input}>
-                <LockIcon sx={{ color: "#999ca3" }} />
-                <TextField variant="filled" label="Password" fullWidth={true} InputProps={{ disableUnderline: true }} />
-              </Box> */}
-            </Box>
-            <Box className={styles.loginOptions}>
-              <FormControlLabel
-                control={<Checkbox defaultChecked />}
-                sx={{ fontFamily: "Ubuntu" }}
-                label="Remember Me"
-              />
-              <Box>Forget Password?</Box>
-            </Box>
-            <Box sx={{ margin: 1 }}>
-              <Button sx={{ bgcolor: "orange", color: "white", fontFamily: "Ubuntu" }}>Login</Button>
-              <Button sx={{ bgcolor: "white", color: "#999ca3", fontFamily: "Ubuntu" }}>Create Account</Button>
-            </Box>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Box className={styles.inputGroup}>
+                <TextField
+                  {...register("email")}
+                  type="text"
+                  placeholder="Email"
+                  variant="standard"
+                  fullWidth={true}
+                  error={errors?.email ? true : false}
+                  helperText={errors?.email ? errors.email.message : null}
+                  sx={{ backgroundColor: "transparent", height: 40 }}
+                  InputProps={{
+                    disableUnderline: true,
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <EmailIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+                {errors.email && <p className={styles.errorMsg}></p>}
+                <TextField
+                  {...register("password")}
+                  type="password"
+                  placeholder="password"
+                  variant="standard"
+                  fullWidth={true}
+                  error={errors?.password ? true : false}
+                  helperText={errors.password ? errors.password.message : null}
+                  style={{ backgroundColor: "transparent", height: 40 }}
+                  InputProps={{
+                    disableUnderline: true,
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <LockIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+                {errors.password && <p className={styles.errorMsg}></p>}
+              </Box>
+              <Box className={styles.loginOptions}>
+                <FormControlLabel control={<Checkbox defaultChecked />} label="Remember Me" />
+                <Box>Forget Password?</Box>
+              </Box>
+              <Box sx={{ margin: 1, display: "flex", justifyContent: "center" }}>
+                <Button sx={{ bgcolor: "orange", color: "white", fontFamily: "Ubuntu" }} type="submit">
+                  Login
+                </Button>
+                {/* <Button sx={{ bgcolor: "white", color: "#999ca3", fontFamily: "Ubuntu" }}>Create Account</Button> */}
+              </Box>
+            </form>
             <Box className={styles.signUp}>
               Don't have an account?
               <Link href="/signup">
@@ -101,39 +108,3 @@ const LoginFrom = () => {
   );
 };
 export default LoginFrom;
-
-// interface IconTextFieldProps{
-//   label:string
-//   iconStart:any,
-// }
-// const IconTextField:React.FC<IconTextFieldProps> = ({ label,iconStart,   ...props }) => {
-//   return (
-//     <TextField
-//       className={styles.input}
-//       variant="filled"
-//       label={label}
-//       {...props}
-//       InputProps={{
-//         startAdornment: iconStart ? (
-//           <InputAdornment position="start">{iconStart}</InputAdornment>
-//         ) : null,
-//       }}
-//     />
-//   );
-// };
-
-// <Typography variant="h6" component="h6">
-// {t('actions.login')}
-// </Typography>
-// <form onSubmit={handleSubmit(onSubmit)}>
-//   <FormInputText  id="email" label='email' control={control} {...register("email",{required:true})}/>
-//   {errors.email && <p>This field is required</p>}
-//   <FormInputText  id="password" label='password' control={control} {...register("password",{required:true})}/>
-//   {/* {errors.password && <p>This field is required</p>} */}
-//   <Button
-//           type="submit"
-//           fullWidth
-//           variant="contained"
-//           sx={{ mt: 3, mb: 2 }}
-//           >Sign In</Button>
-// </form>

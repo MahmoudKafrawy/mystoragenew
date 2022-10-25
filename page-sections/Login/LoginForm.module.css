@@ -62,3 +62,8 @@
   font-weight: 400;
   color: #989899;
 }
+.errorMsg {
+  height: 15px;
+  margin: 0;
+  padding: 0;
+}
