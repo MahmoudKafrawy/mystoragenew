@@ -98,9 +98,11 @@ const NavBar = (props: Props) => {
                 <NavBarButton key={index} title={t(`${item}`)}></NavBarButton>
               ))}
             </Box>
-            <Box sx={{ display: "flex" }}>
+            <Box sx={{ display: "flex", alignItems: "center" }}>
               <Link href="/login">
-                <AccountBoxIcon sx={{ color: "#393939" }} />
+                <AccountBoxIcon
+                  sx={{ color: "#393939", margin: "0 10px", fontSize: "30px", display: { sm: "none" } }}
+                />
               </Link>
               {["routes.login", "routes.calculate"].map((item, index) => (
                 <Link href="/login" key={index}>
