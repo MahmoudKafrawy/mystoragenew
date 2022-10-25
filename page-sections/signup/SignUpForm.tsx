@@ -35,6 +35,10 @@ const SignUpForm = () => {
     nationalID: number;
     email: string;
     password: string;
+    taxCard: FileList;
+    frontID: any;
+    backID: any;
+    CommercialNumber: any;
   };
 
   const schema = yup
@@ -46,6 +50,7 @@ const SignUpForm = () => {
       nationalID: yup.number().required(),
       email: yup.string().required().email(),
       password: yup.string().required(),
+      taxCard: yup.string().required(),
     })
     .required();
 
@@ -58,6 +63,8 @@ const SignUpForm = () => {
   } = useForm<Inputs>({ resolver: yupResolver(schema) });
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
   const { t } = useTranslation();
+
+  console.log(watch());
 
   return (
     <>
@@ -158,19 +165,35 @@ const SignUpForm = () => {
               />
               <Grid container spacing={2}>
                 <Grid item xs={6}>
-                  <Previews title="Front National ID" />
+                  <Previews
+                    title="Front National ID"
+                    register={{ ...register("frontID") }}
+                    error={errors.taxCard?.message?.toString()}
+                  />
                 </Grid>
                 <Grid item xs={6}>
-                  <Previews title="Back National ID" />
+                  <Previews
+                    title="Back National ID"
+                    register={{ ...register("backID") }}
+                    error={errors.taxCard?.message?.toString()}
+                  />
                 </Grid>
               </Grid>
               <Box>
                 <Typography className={styles.subTitle}>Commercial Record Number</Typography>
-                <Previews title="Browse" />
+                <Previews
+                  title="Browse"
+                  register={{ ...register("CommercialNumber") }}
+                  error={errors.taxCard?.message?.toString()}
+                />
               </Box>
               <Box>
                 <Typography className={styles.subTitle}>Tax Card Number</Typography>
-                <Previews title="Browse" />
+                <Previews
+                  title="Browse"
+                  register={{ ...register("taxCard") }}
+                  error={errors.taxCard?.message?.toString()}
+                />
               </Box>
               <Box sx={{ display: "flex", justifyContent: "center" }}>
                 <Button className={styles.button} type="submit">
@@ -218,31 +241,6 @@ const rejectStyle = {
   borderColor: "#ff1744",
 };
 
-// function StyledDropzone() {
-//   const { getRootProps, getInputProps, isFocused, isDragAccept, isDragReject } = useDropzone({
-//     accept: { "image/*": [] },
-//   });
-
-// const style: any = useMemo(
-//   () => ({
-//     ...baseStyle,
-//     ...(isFocused ? focusedStyle : {}),
-//     ...(isDragAccept ? acceptStyle : {}),
-//     ...(isDragReject ? rejectStyle : {}),
-//   }),
-//   [isFocused, isDragAccept, isDragReject]
-// );
-
-//   return (
-//     <div className="container">
-//       <div {...getRootProps({ style })}>
-//         <input {...getInputProps()} />
-//         <p>Drag 'n' drop some files here, or click to select files</p>
-//       </div>
-//     </div>
-//   );
-// }
-
 import { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 
@@ -277,8 +275,11 @@ const img = {
 };
 interface PreviewsProps {
   title: string;
+  register: any;
+  error: string | undefined;
 }
-function Previews({ title }: PreviewsProps) {
+
+function Previews({ title, register, error }: PreviewsProps) {
   const [files, setFiles] = useState([]);
   const { getRootProps, getInputProps, isFocused, isDragAccept, isDragReject } = useDropzone({
     maxFiles: 1,
@@ -330,7 +331,7 @@ function Previews({ title }: PreviewsProps) {
     <section className="container">
       <div {...getRootProps({ style })}>
         <aside style={thumbsContainer}>{thumbs}</aside>
-        <input {...getInputProps()} />
+        <input {...register} {...getInputProps()} />
         {files.length < 1 && (
           <Stack sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
             <CloudUploadIcon />
@@ -338,6 +339,7 @@ function Previews({ title }: PreviewsProps) {
           </Stack>
         )}
       </div>
+      <p className={styles.errorMsg}>{error}</p>
     </section>
   );
 }

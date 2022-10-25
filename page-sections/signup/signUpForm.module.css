@@ -1,5 +1,5 @@
 .parent {
-  height: 900px;
+  height: 1200px;
   background-image: url("/images/slider4.jpg");
   background-position: center;
   background-repeat: no-repeat;
@@ -64,7 +64,9 @@
   background-color: white;
 }
 .errorMsg {
-  height: 0px;
-  margin: 0;
+  height: 10px;
+  font-size: 12px;
+  color: #d32f2f;
+  margin-left: 20px;
   padding: 0;
 }
