@@ -36,21 +36,24 @@ const SignUpForm = () => {
     email: string;
     password: string;
     taxCard: FileList;
-    frontID: any;
-    backID: any;
-    CommercialNumber: any;
+    frontID: FileList;
+    backID: FileList;
+    CommercialNumber: FileList;
   };
 
   const schema = yup
     .object({
-      firstName: yup.string().required(),
-      lastName: yup.string().required(),
-      phone: yup.string().required(),
-      accountType: yup.number().required(),
-      nationalID: yup.number().required(),
+      firstName: yup.string().required("First name is required"),
+      lastName: yup.string().required("Last name is required"),
+      phone: yup.string().required("Phone is required"),
+      accountType: yup.string().required("Please Choose Type").nullable(),
+      nationalID: yup.string().required("National ID number required"),
+      frontID: yup.array().required("Please upload Front ID"),
+      backID: yup.array().required("Please upload Back ID"),
+      CommercialNumber: yup.array().required("Please upload Commercial Card"),
       email: yup.string().required().email(),
       password: yup.string().required(),
-      taxCard: yup.string().required(),
+      taxCard: yup.string().required("Please upload Tax Card"),
     })
     .required();
 
@@ -152,6 +155,7 @@ const SignUpForm = () => {
                       />
                     ))}
                   </RadioGroup>
+                  {errors.accountType ? <p className={styles.errorMsg}>{errors.accountType.message}</p> : null}
                 </FormControl>
               </Box>
               <Typography className={styles.subTitle}>National ID</Typography>
@@ -168,14 +172,14 @@ const SignUpForm = () => {
                   <Previews
                     title="Front National ID"
                     register={{ ...register("frontID") }}
-                    error={errors.taxCard?.message?.toString()}
+                    error={errors.frontID?.message?.toString()}
                   />
                 </Grid>
                 <Grid item xs={6}>
                   <Previews
                     title="Back National ID"
                     register={{ ...register("backID") }}
-                    error={errors.taxCard?.message?.toString()}
+                    error={errors.backID?.message?.toString()}
                   />
                 </Grid>
               </Grid>
@@ -184,7 +188,7 @@ const SignUpForm = () => {
                 <Previews
                   title="Browse"
                   register={{ ...register("CommercialNumber") }}
-                  error={errors.taxCard?.message?.toString()}
+                  error={errors.CommercialNumber?.message?.toString()}
                 />
               </Box>
               <Box>
