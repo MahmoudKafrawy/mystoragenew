@@ -17,10 +17,10 @@ const Footer = () => {
             alignContent="center"
             alignItems="flex-start"
           >
-            <Grid item xs={3} sx={{ justifySelf: "center", fontWeight: 500 }}>
+            <Grid item xs={12} md={3} sx={{ justifySelf: "center", fontWeight: 500 }}>
               MY STORAGE
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={6} md={3}>
               <Stack sx={{ justifySelf: "center", fontWeight: 500 }}>
                 ABOUT
                 <FooterLinks title={"Our Story"} />
@@ -29,17 +29,17 @@ const Footer = () => {
                 <FooterLinks title={"FAQs"} />
               </Stack>
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={6} md={3}>
               <Stack sx={{ justifySelf: "center", fontWeight: 500 }}>
                 LEGAL
                 <FooterLinks title={"Privacy Policy"} />
                 <FooterLinks title={"Terms of use"} />
               </Stack>
             </Grid>
-            <Grid item xs={3} sx={{ justifySelf: "center", fontWeight: 500 }}>
+            <Grid item xs={12} lg={3} md={3} sx={{ justifySelf: "center", fontWeight: 500 }}>
               FOLLOW US
             </Grid>
-            <Grid item xs={12} className={styles.copyRight}>
+            <Grid item xs={12} lg={12} className={styles.copyRight}>
               My storage is online shipping delivery services from Gebhaly | Copyright 2022Gebhaly international LLC{" "}
             </Grid>
           </Grid>
