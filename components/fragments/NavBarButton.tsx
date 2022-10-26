@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import React from "react";
-import styles from "./NavBarButton.module.css";
+import styles from "./NavBarButton.module.scss";
 
 interface NavBarButtonProps {
   title: string;

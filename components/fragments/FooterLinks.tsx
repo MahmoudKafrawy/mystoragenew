@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import React from "react";
-import styles from "./footer.module.css";
+import styles from "./FooterLinks.module.scss";
 interface FooterLinksProps {
   title: string;
 }

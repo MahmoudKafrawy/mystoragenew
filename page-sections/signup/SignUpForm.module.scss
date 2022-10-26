@@ -1,5 +1,4 @@
 .parent {
-  height: 1200px;
   background-image: url("/images/slider4.jpg");
   background-position: center;
   background-repeat: no-repeat;
@@ -19,6 +18,7 @@
   text-align: center;
 }
 .paper {
+  margin: 40px 0;
   padding: 20px;
   width: 690px;
   background-color: #ffffff;

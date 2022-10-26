@@ -1,10 +1,11 @@
+@import "../../styles/variables";
 .navBar {
   font-family: "Ubuntu";
   background-color: white !important;
   box-shadow: none !important;
 }
 .navBarLogo {
-  color: #ff9a28;
+  color: $primary-color;
   font-weight: 600;
 }
 .test {
