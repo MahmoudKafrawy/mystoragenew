@@ -17,11 +17,11 @@ const Footer = () => {
             alignContent="center"
             alignItems="flex-start"
           >
-            <Grid item xs={3} sx={{ justifySelf: "center" }}>
+            <Grid item xs={3} sx={{ justifySelf: "center", fontWeight: 500 }}>
               MY STORAGE
             </Grid>
             <Grid item xs={3}>
-              <Stack>
+              <Stack sx={{ justifySelf: "center", fontWeight: 500 }}>
                 ABOUT
                 <FooterLinks title={"Our Story"} />
                 <FooterLinks title={"Contact Us"} />
@@ -30,13 +30,13 @@ const Footer = () => {
               </Stack>
             </Grid>
             <Grid item xs={3}>
-              <Stack>
+              <Stack sx={{ justifySelf: "center", fontWeight: 500 }}>
                 LEGAL
                 <FooterLinks title={"Privacy Policy"} />
                 <FooterLinks title={"Terms of use"} />
               </Stack>
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={3} sx={{ justifySelf: "center", fontWeight: 500 }}>
               FOLLOW US
             </Grid>
             <Grid item xs={12} className={styles.copyRight}>

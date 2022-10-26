@@ -63,6 +63,14 @@
   font-weight: 400;
   color: #989899;
 }
+.button {
+  width: 90px !important;
+  background-color: $primary-color !important;
+  color: white !important;
+  font-weight: 500 !important;
+  font-size: 16px !important;
+  height: 35px !important;
+}
 .errorMsg {
   height: 15px;
   margin: 0;

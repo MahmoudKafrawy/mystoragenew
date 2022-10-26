@@ -89,7 +89,7 @@ const LoginFrom = () => {
                 <Box>Forget Password?</Box>
               </Box>
               <Box sx={{ margin: 1, display: "flex", justifyContent: "center" }}>
-                <Button sx={{ bgcolor: "primary.main", color: "white", fontFamily: "Ubuntu" }} type="submit">
+                <Button className={styles.button} type="submit">
                   Login
                 </Button>
                 {/* <Button sx={{ bgcolor: "white", color: "#999ca3", fontFamily: "Ubuntu" }}>Create Account</Button> */}
