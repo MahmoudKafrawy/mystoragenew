@@ -51,8 +51,6 @@ const SignUpForm = () => {
       frontID: yup.array().required("Please upload Front ID"),
       backID: yup.array().required("Please upload Back ID"),
       CommercialNumber: yup.array().required("Please upload Commercial Card"),
-      email: yup.string().required().email(),
-      password: yup.string().required(),
       taxCard: yup.array().required("Please upload Tax Card"),
     })
     .required();
@@ -65,13 +63,11 @@ const SignUpForm = () => {
   // } = useForm<Inputs>({ resolver: yupResolver(schema) });
 
   const methods = useForm<Inputs>({ resolver: yupResolver(schema) });
-  // const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
-  const onSubmit = () => {
-    console.log();
-  };
+  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+
   const { t } = useTranslation();
 
-  // console.log(methods.watch());
+  // console.log(methods.watch("taxCard"));
 
   return (
     <>
@@ -304,11 +300,10 @@ import { useFormContext } from "react-hook-form";
 
 function Previews({ title, name, error }: PreviewsProps) {
   const { register, unregister, setValue, watch } = useFormContext();
+  const [files, setFiles] = useState([]);
 
-  // console.log(watch(name));
   const onDrop = useCallback(
     (droppedFiles: any) => {
-      setValue(name, droppedFiles, { shouldValidate: true });
       setFiles(
         droppedFiles.map((file: any) =>
           Object.assign(file, {
@@ -316,6 +311,7 @@ function Previews({ title, name, error }: PreviewsProps) {
           })
         )
       );
+      setValue(name, droppedFiles, { shouldValidate: true });
     },
     [setValue, name]
   );
@@ -325,7 +321,6 @@ function Previews({ title, name, error }: PreviewsProps) {
       unregister(name);
     };
   }, [register, unregister, name]);
-  const [files, setFiles] = useState([]);
   // const files = watch(name);
   // console.log(files);
 
@@ -350,6 +345,7 @@ function Previews({ title, name, error }: PreviewsProps) {
     <div style={thumb} key={file.name}>
       <div style={thumbInner}>
         <img
+          // src={URL.createObjectURL(file)}
           src={file.preview}
           style={img}
           // Revoke data uri after image is loaded

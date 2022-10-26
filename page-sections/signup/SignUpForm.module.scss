@@ -1,3 +1,4 @@
+@import "../../styles/variables";
 .parent {
   background-image: url("/images/slider4.jpg");
   background-position: center;
@@ -18,7 +19,7 @@
   text-align: center;
 }
 .paper {
-  margin: 40px 0;
+  margin: 25px 0;
   padding: 20px;
   width: 690px;
   background-color: #ffffff;
@@ -51,16 +52,16 @@
   border-radius: 10px;
 }
 .button {
-  margin: 10px 0;
-  width: 200px;
-  background-color: #ff9a28;
-  color: white;
-  font-weight: 500;
-  font-size: 18px;
+  margin: 10px 0 !important;
+  width: 200px !important;
+  background-color: $primary-color !important;
+  color: white !important;
+  font-weight: 500 !important;
+  font-size: 18px !important;
 }
 
 .button:hover {
-  color: #ff9a28;
+  color: $primary-color;
   background-color: white;
 }
 .errorMsg {
