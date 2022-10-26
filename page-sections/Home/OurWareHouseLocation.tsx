@@ -14,7 +14,7 @@ const OurWareHouseLocation = () => {
         reduce your costs and improve your shipping experience
       </Box>
       <Box className={styles.divider}></Box>
-      <Grid container className={styles.cards}>
+      <Grid container className={styles.cards} sx={{ marginBottom: 600 }}>
         {wareHouseCountries.map((item) => (
           <Grid key={item} item xs={1}>
             <OurWareHouseLocationCard key={item} title={item} />
