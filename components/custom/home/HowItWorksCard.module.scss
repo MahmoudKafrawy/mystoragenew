@@ -1,5 +1,7 @@
+@import "../../../styles/variables";
+
 .card {
-  border: orange 1px solid;
+  border: $primary-color 1px solid;
   border-radius: 10px;
   height: 200px;
   width: 180px;
@@ -16,7 +18,7 @@
   right: 10px;
   top: -20px;
   font-size: 30px;
-  color: orange;
+  color: $primary-color;
   background-color: white;
   font-weight: 500;
 }

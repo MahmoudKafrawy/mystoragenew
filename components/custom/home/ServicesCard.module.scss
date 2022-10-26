@@ -1,3 +1,5 @@
+@import "../../../styles/variables";
+
 .parent {
   display: flex;
   justify-content: center;
@@ -20,7 +22,7 @@
   width: 90px;
   height: 90px;
   border-radius: 50%;
-  background-color: orange;
+  background-color: $primary-color;
   display: flex;
   justify-content: center;
   align-items: center;

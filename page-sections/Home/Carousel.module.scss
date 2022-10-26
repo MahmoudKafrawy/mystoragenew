@@ -1,3 +1,4 @@
+@import "../../styles/variables";
 .parent {
   height: max(39vw, 270px);
   position: relative;
@@ -37,7 +38,7 @@
 }
 .button {
   margin-top: 20px !important;
-  background-color: orange !important;
+  background-color: $primary-color !important;
   color: white !important;
   font-weight: 400 !important;
   width: 150px !important;

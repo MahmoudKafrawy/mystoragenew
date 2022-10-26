@@ -1,7 +1,7 @@
 import { Box, Stack } from "@mui/system";
 import Image from "next/image";
 import React from "react";
-import styles from "./servicesCard.module.css";
+import styles from "./ServicesCard.module.scss";
 
 interface ServicesCardProps {
   title: string;

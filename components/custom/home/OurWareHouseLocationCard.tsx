@@ -2,7 +2,7 @@ import { Typography } from "@mui/material";
 import { Stack } from "@mui/system";
 import Image from "next/image";
 import React from "react";
-import styles from "./ourWareHouseLocationCard.module.css";
+import styles from "./OurWareHouseLocationCard.module.scss";
 
 interface OurWareHouseLocationCardProps {
   title: string;
