@@ -18,7 +18,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { FormInputText } from "../../components/controlled/FormInputText";
 import { useTranslation } from "next-i18next";
 import { useAuth } from "../../contexts/AuthContext";
-import styles from "./signUpForm.module.css";
+import styles from "./SignUpForm.module.scss";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import countries from "../../common/countries";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -67,7 +67,7 @@ const SignUpForm = () => {
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
   const { t } = useTranslation();
 
-  console.log(watch());
+  // console.log(watch());
 
   return (
     <>
@@ -331,7 +331,7 @@ function Previews({ title, register, error }: PreviewsProps) {
     [isFocused, isDragAccept, isDragReject]
   );
 
-  console.log(files, register.name);
+  // console.log(files, register.name);
 
   return (
     <section className="container">

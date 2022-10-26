@@ -1,3 +1,4 @@
+@import "../../styles/variables";
 .parent {
   height: 600px;
   background-image: url("/images/slider4.jpg");
@@ -66,4 +67,9 @@
   height: 15px;
   margin: 0;
   padding: 0;
+}
+.signUpButton{
+  color:$primary-color;
+  font-weight: 500;
+  cursor: pointer;
 }

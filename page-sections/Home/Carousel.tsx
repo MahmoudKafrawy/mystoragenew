@@ -5,17 +5,20 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
-import styles from "./Carousel.module.css";
+import styles from "./Carousel.module.scss";
+import { useRouter } from "next/router";
 
 const Carousel = () => {
   const sliderImages = [1, 2, 3, 4];
+  const route = useRouter();
   return (
     <Swiper
       slidesPerView={1}
       centeredSlides={true}
+      dir={route.locale === "en" ? "ltr" : "rtl"}
       autoplay={{
         delay: 2500,
-        disableOnInteraction: true,
+        // disableOnInteraction: true,
       }}
       pagination={{
         clickable: true,

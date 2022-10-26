@@ -1,7 +1,7 @@
 import { Box, Grid, Stack } from "@mui/material";
 import React from "react";
 import HowItWorksCard from "../../components/custom/home/HowItWorksCard";
-import styles from "./sections.module.css";
+import styles from "./Sections.module.scss";
 
 const howItWorksPhotos = ["1", "2", "3", "4"];
 const HowItWorks = () => {
@@ -16,7 +16,7 @@ const HowItWorks = () => {
       <Box className={styles.divider}></Box>
       <Grid container className={styles.cards}>
         {howItWorksPhotos.map((item) => (
-          <Grid item xs={6} md={3} className={styles.parent}>
+          <Grid key={item} item xs={6} md={3} className={styles.parent}>
             <HowItWorksCard key={item} title={`0${item}`} paragraph="test" img={`/images/howitworks/${item}.png`} />
           </Grid>
         ))}

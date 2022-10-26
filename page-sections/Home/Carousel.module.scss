@@ -5,13 +5,14 @@
 }
 .image {
   object-fit: cover !important ;
-  z-index: -1;
+  z-index: -999;
 }
 .text {
   position: absolute;
   bottom: 15%;
-  left: 7%;
+  margin: 0 7vw;
 }
+
 .title {
   font-family: "Ubuntu" !important;
   color: white !important;

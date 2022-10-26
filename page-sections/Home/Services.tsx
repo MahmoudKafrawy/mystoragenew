@@ -1,7 +1,7 @@
 import { Box, Stack, Grid } from "@mui/material";
 import React from "react";
 import ServicesCard from "../../components/custom/home/ServicesCard";
-import styles from "./sections.module.css";
+import styles from "./Sections.module.scss";
 
 const servicesCardPhotos = ["1", "2", "3", "4"];
 

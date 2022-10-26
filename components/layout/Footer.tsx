@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Grid, Container } from "@mui/material";
-import styles from "./footer.module.css";
+import styles from "./Footer.module.scss";
 import FooterLinks from "../fragments/FooterLinks";
 import { Stack } from "@mui/system";
 

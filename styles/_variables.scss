@@ -15,6 +15,7 @@ $theme-colors: (
     'secondary': #0181e7,
     'secondaryText': #7e621d,
 );
+$primary-color:#fa9a29;
 
 
 @each $color, $value in $theme-colors {

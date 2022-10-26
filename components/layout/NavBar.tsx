@@ -21,7 +21,7 @@ import Image from "next/image";
 import { GetStaticProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
-import styles from "./nav.module.css";
+import styles from "./NavBar.module.scss";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 
 interface Props {
@@ -138,11 +138,3 @@ const NavBar = (props: Props) => {
   );
 };
 export default NavBar;
-
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale!, ["common", "nav"])),
-    },
-  };
-};

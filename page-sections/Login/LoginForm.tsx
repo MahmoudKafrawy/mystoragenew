@@ -2,7 +2,7 @@ import { Box, Button, Checkbox, FormControlLabel, InputAdornment, OutlinedInput,
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useTranslation } from "next-i18next";
 import { useAuth } from "../../contexts/AuthContext";
-import styles from "./LoginForm.module.css";
+import styles from "./LoginForm.module.scss";
 import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
 import Link from "next/link";
@@ -16,8 +16,8 @@ type Inputs = {
 
 const schema = yup
   .object({
-    email: yup.string().required().email(),
-    password: yup.string().required(),
+    email: yup.string().required("Please enter email").email("Enter Valid email"),
+    password: yup.string().required("Please enter password"),
   })
   .required();
 
@@ -89,7 +89,7 @@ const LoginFrom = () => {
                 <Box>Forget Password?</Box>
               </Box>
               <Box sx={{ margin: 1, display: "flex", justifyContent: "center" }}>
-                <Button sx={{ bgcolor: "orange", color: "white", fontFamily: "Ubuntu" }} type="submit">
+                <Button sx={{ bgcolor: "primary.main", color: "white", fontFamily: "Ubuntu" }} type="submit">
                   Login
                 </Button>
                 {/* <Button sx={{ bgcolor: "white", color: "#999ca3", fontFamily: "Ubuntu" }}>Create Account</Button> */}
@@ -98,7 +98,7 @@ const LoginFrom = () => {
             <Box className={styles.signUp}>
               Don't have an account?
               <Link href="/signup">
-                <p style={{ color: "orange", fontWeight: 500, cursor: "pointer" }}>Sign up</p>
+                <p className={styles.signUpButton}>Sign up</p>
               </Link>
             </Box>
           </Box>

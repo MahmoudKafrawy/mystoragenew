@@ -2,7 +2,7 @@ import { InsertEmoticonSharp } from "@mui/icons-material";
 import { Box, Stack, Grid } from "@mui/material";
 import React from "react";
 import OurWareHouseLocationCard from "../../components/custom/home/OurWareHouseLocationCard";
-import styles from "./sections.module.css";
+import styles from "./Sections.module.scss";
 
 const wareHouseCountries = ["USA", "UK", "UAE", "CHINA", "TURKEY"];
 const OurWareHouseLocation = () => {
