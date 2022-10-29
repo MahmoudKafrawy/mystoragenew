@@ -53,6 +53,7 @@ const SignUpForm = () => {
       backID: yup.array().required("Please upload Back ID"),
       CommercialNumber: yup.array().required("Please upload Commercial Card"),
       taxCard: yup.array().required("Please upload Tax Card"),
+      countryCode: yup.string().required(),
     })
     .required();
 
@@ -68,7 +69,7 @@ const SignUpForm = () => {
 
   const { t } = useTranslation();
 
-  console.log(methods.watch("countryCode"));
+  // console.log(methods.watch("countryCode"));
 
   return (
     <>
@@ -78,6 +79,7 @@ const SignUpForm = () => {
             <FormProvider {...methods}>
               <form onSubmit={methods.handleSubmit(onSubmit)}>
                 <Box className={styles.title}>Sign up</Box>
+
                 <Box className={styles.divider}></Box>
                 <Grid container spacing={2}>
                   <Grid item xs={6}>
@@ -116,26 +118,21 @@ const SignUpForm = () => {
                 <Typography className={styles.subTitle}>Phone</Typography>
                 <Grid container direction="row">
                   <Grid item xs={2}>
-                    <Select
-                      autoWidth
-                      size="small"
-                      labelId="demo-simple-select-helper-label"
-                      id="demo-simple-select-helper"
-                      // value="test"
-                      // value={age}
-                      // onChange={handleChange}
+                    <TextField
                       sx={{ minWidth: "90%" }}
+                      select
+                      size="small"
+                      defaultValue=""
+                      inputProps={methods.register("countryCode")}
+                      error={methods.formState.errors.countryCode ? true : false}
+                      helperText={methods.formState.errors.countryCode?.message}
                     >
-                      <MenuItem value="">
-                        <em>None</em>
-                      </MenuItem>
                       {countries.map((country) => (
-                        <MenuItem
-                          {...methods.register("firstName")}
-                          key={country.name}
-                        >{`${country.flag}${country.dial_code}`}</MenuItem>
+                        <MenuItem key={country.code} value={country.dial_code}>
+                          {country.flag} {country.dial_code}
+                        </MenuItem>
                       ))}
-                    </Select>
+                    </TextField>
                   </Grid>
                   <Grid item xs={10}>
                     <TextField
@@ -151,7 +148,6 @@ const SignUpForm = () => {
                 <Box>
                   <Typography className={styles.subTitle}>Account type</Typography>
                   <FormControl>
-                    {/* <FormLabel id="demo-row-radio-buttons-group-label">Account type</FormLabel> */}
                     <RadioGroup row aria-labelledby="demo-row-radio-buttons-group-label" name="row-radio-buttons-group">
                       {accountType.map((item) => (
                         <FormControlLabel
@@ -183,7 +179,6 @@ const SignUpForm = () => {
                     <Previews
                       title="Front National ID"
                       name="frontID"
-                      // register={{ ...register("frontID") }}
                       error={methods.formState.errors.frontID?.message?.toString()}
                     />
                   </Grid>
@@ -191,7 +186,6 @@ const SignUpForm = () => {
                     <Previews
                       title="Back National ID"
                       name="backID"
-                      // register={{ ...register("backID") }}
                       error={methods.formState.errors.backID?.message?.toString()}
                     />
                   </Grid>
@@ -200,7 +194,6 @@ const SignUpForm = () => {
                   <Typography className={styles.subTitle}>Commercial Record Number</Typography>
                   <Previews
                     title="Browse"
-                    // register={{ ...register("CommercialNumber") }}
                     name="CommercialNumber"
                     error={methods.formState.errors.CommercialNumber?.message?.toString()}
                   />
@@ -209,7 +202,6 @@ const SignUpForm = () => {
                   <Typography className={styles.subTitle}>Tax Card Number</Typography>
                   <Previews
                     title="Browse"
-                    // register={{ ...register("taxCard") }}
                     name="taxCard"
                     error={methods.formState.errors.taxCard?.message?.toString()}
                   />

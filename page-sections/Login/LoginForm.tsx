@@ -8,6 +8,7 @@ import LockIcon from "@mui/icons-material/Lock";
 import Link from "next/link";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useRouter } from "next/router";
 
 type Inputs = {
   email: string;
@@ -22,6 +23,7 @@ const schema = yup
   .required();
 
 const LoginFrom = () => {
+  const router = useRouter();
   const {
     control,
     register,
@@ -29,7 +31,11 @@ const LoginFrom = () => {
     watch,
     formState: { errors },
   } = useForm<Inputs>({ resolver: yupResolver(schema) });
-  const onSubmit: SubmitHandler<Inputs> = (errors) => console.log(errors);
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    localStorage.setItem("user", `${data.email},${data.password}`);
+    console.log("Done ");
+    router.push("/account");
+  };
   const { t } = useTranslation();
 
   // console.log(watch("email")) // watch input value by passing the name of it
