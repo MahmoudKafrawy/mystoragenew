@@ -18,13 +18,13 @@ const AllProviders: React.FC<AllProvidersProps> = ({ children }) => {
     <ModalProvider>
       <FormContextProvider>
         <QueryClientProvider client={queryClient}>
+          {/* <StyledEngineProvider injectFirst> */}
           <ThemeProviderWrapper>
-            <StyledEngineProvider injectFirst>
-              <NavBar />
-              <Box>{children}</Box>
-              <Footer />
-            </StyledEngineProvider>
+            <NavBar />
+            <Box>{children}</Box>
+            <Footer />
           </ThemeProviderWrapper>
+          {/* </StyledEngineProvider> */}
         </QueryClientProvider>
       </FormContextProvider>
     </ModalProvider>

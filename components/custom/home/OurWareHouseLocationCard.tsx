@@ -11,7 +11,7 @@ const OurWareHouseLocationCard: React.FC<OurWareHouseLocationCardProps> = ({ tit
   return (
     <Stack sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
       <Image src={`/images/warehouse/${title}.png`} width="145px" height="237px" alt="" />
-      <Typography className={styles.title}>{title}</Typography>
+      <Typography classes={{ root: styles.title }}>{title}</Typography>
     </Stack>
   );
 };

@@ -7,7 +7,7 @@ interface NavBarButtonProps {
 }
 const NavBarButton: React.FC<NavBarButtonProps> = ({ title }) => {
   if (title === "Calculate" || title === "حساب التكلفة") {
-    return <Button className={styles.calculateButton}>{title}</Button>;
+    return <Button classes={{ root: styles.calculateButton }}>{title}</Button>;
   }
   return (
     <Button sx={{ display: { xs: "none", sm: "block" } }} className={styles.button}>

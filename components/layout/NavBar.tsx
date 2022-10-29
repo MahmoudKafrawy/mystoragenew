@@ -104,6 +104,7 @@ const NavBar = (props: Props) => {
             <Box sx={{ display: "flex", alignItems: "center" }}>
               <Link href="/login">
                 <AccountBoxIcon
+                  classes={{ root: styles.icon }}
                   sx={{
                     color: "#393939",
                     margin: "0 10px",
