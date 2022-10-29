@@ -116,16 +116,15 @@ const SignUpForm = () => {
                   </Grid>
                 </Grid>
                 <Typography className={styles.subTitle}>Phone</Typography>
-                <Grid container direction="row">
-                  <Grid item xs={2}>
+                <Grid container direction="row" spacing={1}>
+                  <Grid item xs={3}>
                     <TextField
-                      sx={{ minWidth: "90%" }}
                       select
+                      fullWidth={true}
                       size="small"
-                      defaultValue=""
                       inputProps={methods.register("countryCode")}
                       error={methods.formState.errors.countryCode ? true : false}
-                      helperText={methods.formState.errors.countryCode?.message}
+                      // helperText={methods.formState.errors.countryCode?.message}
                     >
                       {countries.map((country) => (
                         <MenuItem key={country.code} value={country.dial_code}>
@@ -134,11 +133,11 @@ const SignUpForm = () => {
                       ))}
                     </TextField>
                   </Grid>
-                  <Grid item xs={10}>
+                  <Grid item xs={9}>
                     <TextField
+                      fullWidth={true}
                       type="text"
                       size="small"
-                      fullWidth={true}
                       {...methods.register("phone")}
                       error={methods.formState.errors?.phone ? true : false}
                       helperText={methods.formState.errors?.phone ? methods.formState.errors.phone.message : null}
