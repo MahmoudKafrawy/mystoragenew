@@ -50,37 +50,36 @@ const Index = () => {
 
   const router = useRouter();
 
-  // React.useEffect(() => {
-  //   console.log(router);
-
-  //   switch (router.query.page) {
-  //     case "personal":
-  //       setValue(0);
-  //       break;
-  //     case "addresses":
-  //       setValue(1);
-  //       break;
-  //     case "cartons":
-  //       setValue(2);
-  //       break;
-  //     case "deliveries":
-  //       setValue(3);
-  //       break;
-  //     case "transactions":
-  //       setValue(4);
-  //       break;
-  //     case "wallet":
-  //       setValue(5);
-  //       break;
-  //     case "logout":
-  //       setValue(6);
-  //       break;
-  //     default:
-  //       "personal";
-  //       setValue(0);
-  //       break;
-  //   }
-  // }, [router.query.page]);
+  console.log(router);
+  React.useEffect(() => {
+    switch (router.query.page) {
+      case "personal":
+        setValue(0);
+        break;
+      case "addresses":
+        setValue(1);
+        break;
+      case "cartons":
+        setValue(2);
+        break;
+      case "deliveries":
+        setValue(3);
+        break;
+      case "transactions":
+        setValue(4);
+        break;
+      case "wallet":
+        setValue(5);
+        break;
+      case "logout":
+        setValue(6);
+        break;
+      default:
+        "personal";
+        setValue(0);
+        break;
+    }
+  }, [router.query.page]);
 
   return (
     <Box sx={{ flexGrow: 1, bgcolor: "background.paper", display: "flex", height: "100vh", marginTop: 3 }}>
@@ -196,16 +195,16 @@ const Index = () => {
 
 export default Index;
 
-// export const getStaticPaths = async () => {
-//   const pages = ["personal","addresses","cartons","deliveries","transactions","wallet","logout"];
-//   const paths = pages.map((id) => ({ params: { page: id.toString() } }));
-//   return { paths, fallback: false };
-// };
+export const getStaticPaths = async () => {
+  const pages = ["", "personal", "addresses", "cartons", "deliveries", "transactions", "wallet", "logout"];
+  const paths = pages.map((id) => ({ params: { page: [id.toString()] } }));
+  return { paths, fallback: false };
+};
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale!, ["common", "account"])),
+      ...(await serverSideTranslations(locale!, ["common", "account", "nav"])),
     },
   };
 };

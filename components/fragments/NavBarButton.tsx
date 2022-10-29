@@ -6,7 +6,7 @@ interface NavBarButtonProps {
   title: string;
 }
 const NavBarButton: React.FC<NavBarButtonProps> = ({ title }) => {
-  if (title === "Calculate") {
+  if (title === "Calculate" || title === "حساب التكلفة") {
     return <Button className={styles.calculateButton}>{title}</Button>;
   }
   return (

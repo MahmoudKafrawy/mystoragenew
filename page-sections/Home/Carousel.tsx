@@ -7,8 +7,10 @@ import "swiper/css";
 import "swiper/css/pagination";
 import styles from "./Carousel.module.scss";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 
 const Carousel = () => {
+  const { t } = useTranslation("carousel");
   const sliderImages = [1, 2, 3, 4];
   const route = useRouter();
   return (
@@ -30,12 +32,10 @@ const Carousel = () => {
           <Box className={styles.parent}>
             <Image src={`/images/slider${img}.jpg`} layout="fill" className={styles.image} priority />
             <Box className={styles.text}>
-              <Typography className={styles.title}>Your Partner in Shipping</Typography>
-              <Typography className={styles.paragraphOne}>My storage meets your Shopping needs</Typography>
-              <Typography className={styles.paragraphTwo}>
-                We have addresses around the world to make global shopping easy for you
-              </Typography>
-              <Button className={styles.button}>Sign Up</Button>
+              <Typography className={styles.title}>{t("slide1.title")}</Typography>
+              <Typography className={styles.paragraphOne}>{t("slide1.firstSubTitle")}</Typography>
+              <Typography className={styles.paragraphTwo}>{t("slide1.secondSubTitle")}</Typography>
+              <Button className={styles.button}>{t("slide1.buttonTitle")}</Button>
             </Box>
           </Box>
         </SwiperSlide>
