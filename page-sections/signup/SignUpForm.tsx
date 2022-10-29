@@ -31,6 +31,7 @@ const SignUpForm = () => {
     firstName: string;
     lastName: string;
     phone: number;
+    countryCode: number;
     accountType: string;
     nationalID: number;
     email: string;
@@ -67,7 +68,7 @@ const SignUpForm = () => {
 
   const { t } = useTranslation();
 
-  // console.log(methods.watch("taxCard"));
+  console.log(methods.watch("countryCode"));
 
   return (
     <>
@@ -129,7 +130,10 @@ const SignUpForm = () => {
                         <em>None</em>
                       </MenuItem>
                       {countries.map((country) => (
-                        <MenuItem key={country.name}>{`${country.flag}${country.dial_code}`}</MenuItem>
+                        <MenuItem
+                          {...methods.register("firstName")}
+                          key={country.name}
+                        >{`${country.flag}${country.dial_code}`}</MenuItem>
                       ))}
                     </Select>
                   </Grid>

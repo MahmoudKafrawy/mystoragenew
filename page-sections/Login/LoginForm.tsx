@@ -9,6 +9,10 @@ import Link from "next/link";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
+const signInFields = [
+  { label: "Email", type: "text", register: '"email"' },
+  { label: "Password", type: "password", register: '"password"' },
+];
 type Inputs = {
   email: string;
   password: string;
@@ -16,7 +20,7 @@ type Inputs = {
 
 const schema = yup
   .object({
-    email: yup.string().required("Please enter email").email("Enter Valid email"),
+    email: yup.string().email("Enter Valid email").required("Please enter email"),
     password: yup.string().required("Please enter password"),
   })
   .required();
