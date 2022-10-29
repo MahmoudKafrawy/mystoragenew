@@ -49,32 +49,33 @@ const Index = () => {
   const { t } = useTranslation("account");
 
   const router = useRouter();
+  console.log(router);
 
   React.useEffect(() => {
-    switch (router.asPath) {
-      case "/account/personal":
+    switch (router.query.tab) {
+      case "personal":
         setValue(0);
         break;
-      case "/account/addresses":
+      case "address":
         setValue(1);
         break;
-      case "/account/cartons":
+      case "cartons":
         setValue(2);
         break;
-      case "/account/deliveries":
+      case "deliveries":
         setValue(3);
         break;
-      case "/account/transactions":
+      case "transactions":
         setValue(4);
         break;
-      case "/account/wallet":
+      case "wallet":
         setValue(5);
         break;
-      case "/account/logout":
+      case "logout":
         setValue(6);
         break;
       default:
-        "/account/personal";
+        "personal";
         setValue(0);
         break;
     }
@@ -82,7 +83,7 @@ const Index = () => {
 
   return (
     <Container maxWidth="lg">
-      <Box sx={{ flexGrow: 1, bgcolor: "background.paper", display: "flex", height: "100vh", marginTop: 3 }}>
+      <Box sx={{ flexGrow: 1, bgcolor: "background.paper", display: "flex", minHeight: "100vh", marginTop: 3 }}>
         <Tabs
           orientation="vertical"
           variant="scrollable"
@@ -91,7 +92,7 @@ const Index = () => {
           aria-label="Vertical tabs example"
           sx={{ borderRight: 1, borderColor: "divider" }}
         >
-          <Link href={routes.PersonalInformation.href} shallow>
+          <Link href="?tab=personal" shallow>
             <a>
               <Tab
                 label={
@@ -103,7 +104,7 @@ const Index = () => {
               />
             </a>
           </Link>
-          <Link href={routes.Addresses.href} shallow>
+          <Link href="?tab=address" shallow>
             <a>
               <Tab
                 label={
@@ -111,11 +112,11 @@ const Index = () => {
                     <Home style={{ verticalAlign: "middle" }} /> {t("addresses.address")}
                   </div>
                 }
-                {...a11yProps(3)}
+                {...a11yProps(1)}
               />
             </a>
           </Link>
-          <Link href={routes.Cartons.href} shallow>
+          <Link href="?tab=cartons" shallow>
             <a>
               <Tab
                 label={
@@ -127,7 +128,7 @@ const Index = () => {
               />
             </a>
           </Link>
-          <Link href={routes.DeliveryRequests.href} shallow>
+          <Link href="?tab=deliveries" shallow>
             <a>
               <Tab
                 label={
@@ -135,11 +136,11 @@ const Index = () => {
                     <LocalShipping style={{ verticalAlign: "middle" }} /> {t("deliveries.deliveries")}
                   </div>
                 }
-                {...a11yProps(1)}
+                {...a11yProps(3)}
               />
             </a>
           </Link>
-          <Link href={routes.Transactions.href} shallow>
+          <Link href="?tab=transactions" shallow>
             <a>
               <Tab
                 label={
@@ -151,7 +152,7 @@ const Index = () => {
               />
             </a>
           </Link>
-          <Link href={routes.Wallet.href} shallow>
+          <Link href="?tab=wallet" shallow>
             <a>
               <Tab
                 label={
@@ -163,7 +164,7 @@ const Index = () => {
               />
             </a>
           </Link>
-          <Link href={routes.Logout.href} shallow>
+          <Link href="/logout" shallow>
             <a>
               <Tab
                 label={
@@ -189,6 +190,12 @@ const Index = () => {
         <TabPanel value={value} index={3}>
           Item Four
         </TabPanel>
+        <TabPanel value={value} index={4}>
+          Item five
+        </TabPanel>
+        <TabPanel value={value} index={5}>
+          Item six
+        </TabPanel>
       </Box>
     </Container>
   );
@@ -196,11 +203,11 @@ const Index = () => {
 
 export default Index;
 
-export const getStaticPaths = async () => {
-  const pages = ["", "personal", "addresses", "cartons", "deliveries", "transactions", "wallet", "logout"];
-  const paths = pages.map((id) => ({ params: { index: [id.toString()] } }));
-  return { paths, fallback: false };
-};
+// export const getStaticPaths = async () => {
+//   const pages = ["", "personal", "addresses", "cartons", "deliveries", "transactions", "wallet", "logout"];
+//   const paths = pages.map((id) => ({ params: { index: [id.toString()] } }));
+//   return { paths, fallback: false };
+// };
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
