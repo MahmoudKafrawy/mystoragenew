@@ -6,21 +6,26 @@ import styles from "./LoginForm.module.scss";
 import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
 import Link from "next/link";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import { useRouter } from "next/router";
+import { joiResolver } from "@hookform/resolvers/joi";
+import Joi from "joi";
 
 type Inputs = {
   email: string;
   password: string;
 };
 
-const schema = yup
-  .object({
-    email: yup.string().email("Enter Valid email").required("Please enter email"),
-    password: yup.string().required("Please enter password"),
-  })
-  .required();
+const schema = Joi.object({
+  email: Joi.string().min(4).message("4").max(6).message("6").required(),
+  passwrod: Joi.string().min(4).message("4").max(6).message("6").required(),
+});
+
+// const schema = yup
+//   .object({
+//     email: yup.string().email("Enter Valid email").required("Please enter email"),
+//     password: yup.string().required("Please enter password"),
+//   })
+//   .required();
 
 const LoginFrom = () => {
   const router = useRouter();
@@ -30,7 +35,7 @@ const LoginFrom = () => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<Inputs>({ resolver: yupResolver(schema) });
+  } = useForm<Inputs>({ resolver: joiResolver(schema) });
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     localStorage.setItem("user", `${data.email},${data.password}`);
     console.log("Done ");

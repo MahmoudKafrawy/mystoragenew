@@ -21,8 +21,8 @@ import { useAuth } from "../../contexts/AuthContext";
 import styles from "./SignUpForm.module.scss";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import countries from "../../common/countries";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import { joiResolver } from "@hookform/resolvers/joi";
+import Joi from "joi";
 
 const SignUpForm = () => {
   const accountType = ["export freight", "Shipping releases", "export customs", "Customs Publications"];
@@ -42,20 +42,18 @@ const SignUpForm = () => {
     CommercialNumber: FileList;
   };
 
-  const schema = yup
-    .object({
-      firstName: yup.string().required("First name is required"),
-      lastName: yup.string().required("Last name is required"),
-      phone: yup.string().required("Phone is required"),
-      accountType: yup.string().required("Please Choose Type").nullable(),
-      nationalID: yup.string().required("National ID number required"),
-      frontID: yup.array().required("Please upload Front ID"),
-      backID: yup.array().required("Please upload Back ID"),
-      CommercialNumber: yup.array().required("Please upload Commercial Card"),
-      taxCard: yup.array().required("Please upload Tax Card"),
-      countryCode: yup.string().required(),
-    })
-    .required();
+  const schema = Joi.object({
+    firstName: Joi.string().min(4).message("4").max(6).message("6").required(),
+    lastName: Joi.string().min(4).message("4").max(6).message("6").required(),
+    phone: Joi.string().min(4).message("4").max(6).message("6").required(),
+    account: Joi.string().min(4).message("4").max(6).message("6").required(),
+    nationailty: Joi.string().min(4).message("4").max(6).message("6").required(),
+    frontID: Joi.string().min(4).message("4").max(6).message("6").required(),
+    backID: Joi.string().min(4).message("4").max(6).message("6").required(),
+    CommercialNumber: Joi.string().min(4).message("4").max(6).message("6").required(),
+    taxCard: Joi.string().min(4).message("4").max(6).message("6").required(),
+    countryCode: Joi.string().min(4).message("4").max(6).message("6").required(),
+  });
 
   // const {
   //   register,
@@ -64,7 +62,7 @@ const SignUpForm = () => {
   //   formState: { errors },
   // } = useForm<Inputs>({ resolver: yupResolver(schema) });
 
-  const methods = useForm<Inputs>({ resolver: yupResolver(schema) });
+  const methods = useForm<Inputs>({ resolver: joiResolver(schema) });
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
   const { t } = useTranslation();

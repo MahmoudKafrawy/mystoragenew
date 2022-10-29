@@ -3,7 +3,7 @@ import ThemeProviderWrapper from "../theme/ThemeProviderWrapper";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { FormContextProvider } from "../../contexts/FormContext";
 import { ModalProvider } from "../../contexts/ModalContext";
-import { Box } from "@mui/system";
+import { Box } from "@mui/material";
 import NavBar from "../layout/NavBar";
 
 interface AllProvidersProps {
@@ -19,7 +19,7 @@ const AllProviders: React.FC<AllProvidersProps> = ({ children }) => {
         <QueryClientProvider client={queryClient}>
           <ThemeProviderWrapper>
             <NavBar />
-            <Box sx={{ marginTop: 7 }}>{children}</Box>
+            <Box>{children}</Box>
             <Footer />
           </ThemeProviderWrapper>
         </QueryClientProvider>
