@@ -3,6 +3,7 @@ import { Box, Grid, Container } from "@mui/material";
 import styles from "./Footer.module.scss";
 import FooterLinks from "../fragments/FooterLinks";
 import { Stack } from "@mui/system";
+import { Facebook, Twitter, Instagram, LinkedIn } from "@mui/icons-material";
 
 const Footer = () => {
   return (
@@ -20,7 +21,7 @@ const Footer = () => {
             <Grid item xs={12} md={3} sx={{ justifySelf: "center", fontWeight: 500 }}>
               MY STORAGE
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} md={3}>
               <Stack sx={{ justifySelf: "center", fontWeight: 500 }}>
                 ABOUT
                 <FooterLinks title={"Our Story"} />
@@ -29,7 +30,7 @@ const Footer = () => {
                 <FooterLinks title={"FAQs"} />
               </Stack>
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} md={3}>
               <Stack sx={{ justifySelf: "center", fontWeight: 500 }}>
                 LEGAL
                 <FooterLinks title={"Privacy Policy"} />
@@ -37,7 +38,15 @@ const Footer = () => {
               </Stack>
             </Grid>
             <Grid item xs={12} lg={3} md={3} sx={{ justifySelf: "center", fontWeight: 500 }}>
-              FOLLOW US
+              <Stack>
+                FOLLOW US
+                <Box sx={{ marginTop: "4px" }}>
+                  <Facebook />
+                  <Twitter />
+                  <Instagram />
+                  <LinkedIn />
+                </Box>
+              </Stack>
             </Grid>
             <Grid item xs={12} lg={12} className={styles.copyRight}>
               My storage is online shipping delivery services from Gebhaly | Copyright 2022Gebhaly international LLC{" "}

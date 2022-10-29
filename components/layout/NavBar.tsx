@@ -30,7 +30,6 @@ interface Props {
 }
 
 const drawerWidth = 240;
-const navItems = ["routes.home", "routes.ourStory", "routes.service", "routes.howItWorks", "routes.contact"];
 const NavBar = (props: Props) => {
   const { t } = useTranslation("nav");
   const { window } = props;
@@ -47,10 +46,10 @@ const NavBar = (props: Props) => {
       </Typography>
       <Divider />
       <List>
-        {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
+        {navBarRoutes.map((item) => (
+          <ListItem key={item.label} disablePadding>
             <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText primary={t(item)} />
+              <ListItemText primary={t(item.translationKey)} />
             </ListItemButton>
           </ListItem>
         ))}

@@ -9,10 +9,6 @@ import Link from "next/link";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-const signInFields = [
-  { label: "Email", type: "text", register: '"email"' },
-  { label: "Password", type: "password", register: '"password"' },
-];
 type Inputs = {
   email: string;
   password: string;

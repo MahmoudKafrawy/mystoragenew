@@ -1,6 +1,6 @@
 .title {
   color: #292929 !important;
-  font-size: 3.5vw !important;
+  font-size: min(3.5vw , 40px) !important;
   font-weight: 500 !important;
   margin-top: 10px !important;
 }
