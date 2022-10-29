@@ -40,7 +40,7 @@ const Footer = () => {
             <Grid item xs={12} lg={3} md={3} sx={{ justifySelf: "center", fontWeight: 500 }}>
               <Stack>
                 FOLLOW US
-                <Box sx={{ marginTop: "4px" }}>
+                <Box sx={{ marginTop: 1 }}>
                   <Facebook />
                   <Twitter />
                   <Instagram />
