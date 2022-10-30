@@ -49,7 +49,7 @@ const Footer = () => {
               </Stack>
             </Grid>
             <Grid item xs={12} lg={12} className={styles.copyRight}>
-              My storage is online shipping delivery services from Gebhaly | Copyright 2022Gebhaly international LLC{" "}
+              My storage is online shipping delivery services from Gebhaly | Copyright 2022Gebhaly international LLC
             </Grid>
           </Grid>
         </Box>

@@ -33,8 +33,6 @@ interface Props {
 const drawerWidth = 240;
 const NavBar = (props: Props) => {
   const router = useRouter();
-  console.log(router.locale);
-
   const { t } = useTranslation("nav");
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
