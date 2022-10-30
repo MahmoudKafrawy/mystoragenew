@@ -24,7 +24,7 @@ import Joi from "joi";
 import DropZoneInput from "../../components/controlled/DropZoneInput";
 
 const SignUpForm = () => {
-  const accountType = ["export freight", "Shipping releases", "export customs", "Customs Publications"];
+  const accountType = ["Export freight", "Shipping releases", "Export customs", "Customs Publications"];
 
   type Inputs = {
     firstName: string;
