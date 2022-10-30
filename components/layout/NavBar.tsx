@@ -21,6 +21,7 @@ import { useTranslation } from "next-i18next";
 import styles from "./NavBar.module.scss";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import { navBarRoutes } from "../../common/routes";
+import { useRouter } from "next/router";
 interface Props {
   /**
    * Injected by the documentation to work in an iframe.
@@ -31,6 +32,9 @@ interface Props {
 
 const drawerWidth = 240;
 const NavBar = (props: Props) => {
+  const router = useRouter();
+  console.log(router.locale);
+
   const { t } = useTranslation("nav");
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -47,11 +51,13 @@ const NavBar = (props: Props) => {
       <Divider />
       <List>
         {navBarRoutes.map((item) => (
-          <ListItem key={item.label} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText primary={t(item.translationKey)} />
-            </ListItemButton>
-          </ListItem>
+          <Link href={item.href}>
+            <ListItem key={item.label} disablePadding>
+              <ListItemButton sx={{ textAlign: "center" }}>
+                <ListItemText primary={t(item.translationKey)} />
+              </ListItemButton>
+            </ListItem>
+          </Link>
         ))}
       </List>
     </Box>
@@ -127,6 +133,7 @@ const NavBar = (props: Props) => {
       </AppBar>
       <Box component="nav">
         <Drawer
+          anchor={router.locale === "en" ? "left" : "right"}
           container={container}
           variant="temporary"
           open={mobileOpen}

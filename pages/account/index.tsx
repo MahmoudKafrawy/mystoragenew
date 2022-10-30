@@ -115,7 +115,7 @@ const Wrapper = ({ children }: any) => {
           sx={{ borderRight: 1, borderColor: "divider" }}
         >
           {accountPages.map((page, index) => (
-            <Link href={`/account/${page.title}`} shallow>
+            <Link key={page.title} href={`/account/${page.title}`} shallow>
               <a>
                 <Tab
                   label={
