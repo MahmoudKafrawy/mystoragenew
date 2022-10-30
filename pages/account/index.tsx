@@ -6,11 +6,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Tabs, Tab, Box, Container } from "@mui/material";
 import { AccountBox, LocalShipping, Inventory, Home, ExitToApp, AttachMoney, Paid } from "@mui/icons-material";
-import { Requester } from "../../API/Requester";
-import PackageDetails from "../../page-sections/account/PackageDetails";
-import Personal from "../../page-sections/account/Personal";
-import { routes } from "../../common/routes";
-import { users } from "../../API/endpoints/account";
+
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
@@ -39,7 +35,7 @@ function a11yProps(index: number) {
   };
 }
 
-const Index = () => {
+const Wrapper = ({ children }: any) => {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -52,30 +48,30 @@ const Index = () => {
   console.log(router);
 
   React.useEffect(() => {
-    switch (router.query.tab) {
-      case "personal":
+    switch (router.pathname) {
+      case "/account/personal":
         setValue(0);
         break;
-      case "address":
+      case "/account/addresses":
         setValue(1);
         break;
-      case "cartons":
+      case "/account/cartons":
         setValue(2);
         break;
-      case "deliveries":
+      case "/account/deliveries":
         setValue(3);
         break;
-      case "transactions":
+      case "/account/transactions":
         setValue(4);
         break;
-      case "wallet":
+      case "/account/wallet":
         setValue(5);
         break;
       case "logout":
         setValue(6);
         break;
       default:
-        "personal";
+        "/account/personal";
         setValue(0);
         break;
     }
@@ -92,7 +88,7 @@ const Index = () => {
           aria-label="Vertical tabs example"
           sx={{ borderRight: 1, borderColor: "divider" }}
         >
-          <Link href="?tab=personal" shallow>
+          <Link href="/account/personal" shallow>
             <a>
               <Tab
                 label={
@@ -104,7 +100,7 @@ const Index = () => {
               />
             </a>
           </Link>
-          <Link href="?tab=address" shallow>
+          <Link href="/account/addresses" shallow>
             <a>
               <Tab
                 label={
@@ -116,7 +112,7 @@ const Index = () => {
               />
             </a>
           </Link>
-          <Link href="?tab=cartons" shallow>
+          <Link href="/account/cartons" shallow>
             <a>
               <Tab
                 label={
@@ -128,7 +124,7 @@ const Index = () => {
               />
             </a>
           </Link>
-          <Link href="?tab=deliveries" shallow>
+          <Link href="/account/deliveries" shallow>
             <a>
               <Tab
                 label={
@@ -140,7 +136,7 @@ const Index = () => {
               />
             </a>
           </Link>
-          <Link href="?tab=transactions" shallow>
+          <Link href="/account/transactions" shallow>
             <a>
               <Tab
                 label={
@@ -152,7 +148,7 @@ const Index = () => {
               />
             </a>
           </Link>
-          <Link href="?tab=wallet" shallow>
+          <Link href="/account/wallet" shallow>
             <a>
               <Tab
                 label={
@@ -178,30 +174,14 @@ const Index = () => {
           </Link>
         </Tabs>
         <TabPanel value={value} index={0}>
-          <Requester URL={users} />
-          <Personal />
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <PackageDetails />
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-          Item Three
-        </TabPanel>
-        <TabPanel value={value} index={3}>
-          Item Four
-        </TabPanel>
-        <TabPanel value={value} index={4}>
-          Item five
-        </TabPanel>
-        <TabPanel value={value} index={5}>
-          Item six
+          {children}
         </TabPanel>
       </Box>
     </Container>
   );
 };
 
-export default Index;
+export default Wrapper;
 
 // export const getStaticPaths = async () => {
 //   const pages = ["", "personal", "addresses", "cartons", "deliveries", "transactions", "wallet", "logout"];
