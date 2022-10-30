@@ -26,7 +26,7 @@ export default Home;
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale!, ["common", "nav", "carousel"])),
+      ...(await serverSideTranslations(locale!, ["common", "nav", "carousel", "home"])),
     },
   };
 };
