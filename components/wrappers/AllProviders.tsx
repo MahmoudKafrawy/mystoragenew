@@ -5,7 +5,6 @@ import { FormContextProvider } from "../../contexts/FormContext";
 import { ModalProvider } from "../../contexts/ModalContext";
 import { Box } from "@mui/material";
 import NavBar from "../layout/NavBar";
-import StyledEngineProvider from "@mui/material/StyledEngineProvider";
 
 interface AllProvidersProps {
   children: React.ReactNode;
@@ -18,13 +17,11 @@ const AllProviders: React.FC<AllProvidersProps> = ({ children }) => {
     <ModalProvider>
       <FormContextProvider>
         <QueryClientProvider client={queryClient}>
-          <StyledEngineProvider injectFirst>
-            <ThemeProviderWrapper>
-              <NavBar />
-              <Box sx={{ marginTop: 8 }}>{children}</Box>
-              <Footer />
-            </ThemeProviderWrapper>
-          </StyledEngineProvider>
+          <ThemeProviderWrapper>
+            <NavBar />
+            <Box sx={{ marginTop: 8 }}>{children}</Box>
+            <Footer />
+          </ThemeProviderWrapper>
         </QueryClientProvider>
       </FormContextProvider>
     </ModalProvider>
