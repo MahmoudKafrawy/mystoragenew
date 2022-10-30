@@ -45,9 +45,11 @@ const Wrapper = ({ children }: any) => {
   const { t } = useTranslation("account");
 
   const router = useRouter();
-  console.log(router);
 
   React.useEffect(() => {
+    if (router.pathname === "/account") {
+      router.push("/account/personal");
+    }
     switch (router.pathname) {
       case "/account/personal":
         setValue(0);
