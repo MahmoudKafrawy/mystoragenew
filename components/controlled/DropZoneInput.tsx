@@ -44,7 +44,7 @@ interface PreviewsProps {
 }
 
 function DropZoneInput({ title, name, error }: PreviewsProps) {
-  const { register, unregister, setValue, watch, reset } = useFormContext();
+  const { register, unregister, setValue, reset } = useFormContext();
   const [files, setFiles] = useState([]);
 
   const onDrop = useCallback(
