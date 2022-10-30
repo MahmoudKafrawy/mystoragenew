@@ -36,6 +36,30 @@ function a11yProps(index: number) {
 }
 
 const Wrapper = ({ children }: any) => {
+  const accountPages = [
+    {
+      title: "personal",
+      icon: <AccountBox style={{ verticalAlign: "middle" }} />,
+      translationKey: "personal.personalAccount",
+    },
+    { title: "addresses", icon: <Home style={{ verticalAlign: "middle" }} />, translationKey: "addresses.address" },
+    { title: "cartons", icon: <Inventory style={{ verticalAlign: "middle" }} />, translationKey: "cartons.carton" },
+    {
+      title: "deliveries",
+      icon: <LocalShipping style={{ verticalAlign: "middle" }} />,
+      translationKey: "deliveries.deliveries",
+    },
+    {
+      title: "transactions",
+      icon: <Paid style={{ verticalAlign: "middle" }} />,
+      translationKey: "transactions.transactions",
+    },
+    {
+      title: "wallet",
+      icon: <AttachMoney style={{ verticalAlign: "middle" }} />,
+      translationKey: "transactions.paymentMethods.Wallet",
+    },
+  ];
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -90,78 +114,20 @@ const Wrapper = ({ children }: any) => {
           aria-label="Vertical tabs example"
           sx={{ borderRight: 1, borderColor: "divider" }}
         >
-          <Link href="/account/personal" shallow>
-            <a>
-              <Tab
-                label={
-                  <div>
-                    <AccountBox style={{ verticalAlign: "middle" }} /> {t("personal.personalAccount")}
-                  </div>
-                }
-                {...a11yProps(0)}
-              />
-            </a>
-          </Link>
-          <Link href="/account/addresses" shallow>
-            <a>
-              <Tab
-                label={
-                  <div>
-                    <Home style={{ verticalAlign: "middle" }} /> {t("addresses.address")}
-                  </div>
-                }
-                {...a11yProps(1)}
-              />
-            </a>
-          </Link>
-          <Link href="/account/cartons" shallow>
-            <a>
-              <Tab
-                label={
-                  <div>
-                    <Inventory style={{ verticalAlign: "middle" }} /> {t("cartons.carton")}
-                  </div>
-                }
-                {...a11yProps(2)}
-              />
-            </a>
-          </Link>
-          <Link href="/account/deliveries" shallow>
-            <a>
-              <Tab
-                label={
-                  <div>
-                    <LocalShipping style={{ verticalAlign: "middle" }} /> {t("deliveries.deliveries")}
-                  </div>
-                }
-                {...a11yProps(3)}
-              />
-            </a>
-          </Link>
-          <Link href="/account/transactions" shallow>
-            <a>
-              <Tab
-                label={
-                  <div>
-                    <Paid style={{ verticalAlign: "middle" }} /> {t("transactions.transactions")}
-                  </div>
-                }
-                {...a11yProps(4)}
-              />
-            </a>
-          </Link>
-          <Link href="/account/wallet" shallow>
-            <a>
-              <Tab
-                label={
-                  <div>
-                    <AttachMoney style={{ verticalAlign: "middle" }} /> {t("transactions.paymentMethods.Wallet")}
-                  </div>
-                }
-                {...a11yProps(5)}
-              />
-            </a>
-          </Link>
+          {accountPages.map((page, index) => (
+            <Link href={`/account/${page.title}`} shallow>
+              <a>
+                <Tab
+                  label={
+                    <div>
+                      {page.icon} {t(`${page.translationKey}`)}
+                    </div>
+                  }
+                  {...a11yProps(index)}
+                />
+              </a>
+            </Link>
+          ))}
           <Link href="/logout" shallow>
             <a>
               <Tab
@@ -175,7 +141,7 @@ const Wrapper = ({ children }: any) => {
             </a>
           </Link>
         </Tabs>
-        <TabPanel value={value} index={0}>
+        <TabPanel value={value} index={value}>
           {children}
         </TabPanel>
       </Box>
