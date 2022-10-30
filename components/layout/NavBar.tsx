@@ -49,7 +49,7 @@ const NavBar = (props: Props) => {
       <Divider />
       <List>
         {navBarRoutes.map((item) => (
-          <Link href={item.href}>
+          <Link key={item.label} href={item.href}>
             <ListItem key={item.label} disablePadding>
               <ListItemButton sx={{ textAlign: "center" }}>
                 <ListItemText primary={t(item.translationKey)} />
