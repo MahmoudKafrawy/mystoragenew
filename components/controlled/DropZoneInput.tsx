@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import React, { useCallback } from "react";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import styles from "./SignUpForm.module.scss";
+import { CloudUpload, DeleteForever } from "@mui/icons-material";
+import styles from "./DropZoneInput.module.scss";
 import { useFormContext } from "react-hook-form";
 import { Stack } from "@mui/material";
 
@@ -37,45 +37,14 @@ const rejectStyle = {
 import { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 
-const thumbsContainer: any = {
-  display: "flex",
-  flexDirection: "row",
-  flexWrap: "wrap",
-};
-
-const thumb: any = {
-  display: "flex",
-  justifyContent: "center",
-  borderRadius: 2,
-  // border: "1px solid #eaeaea",
-  marginBottom: 3,
-  marginRight: 3,
-  width: 100,
-  height: 100,
-  padding: 4,
-  boxSizing: "border-box",
-};
-
-const thumbInner = {
-  display: "flex",
-  minWidth: 0,
-  overflow: "hidden",
-};
-
-const img = {
-  display: "block",
-  width: "auto",
-  height: "100%",
-};
 interface PreviewsProps {
   title: string;
-  // register: any;
   name: string;
   error: string | undefined;
 }
 
 function DropZoneInput({ title, name, error }: PreviewsProps) {
-  const { register, unregister, setValue, watch } = useFormContext();
+  const { register, unregister, setValue, watch, reset } = useFormContext();
   const [files, setFiles] = useState([]);
 
   const onDrop = useCallback(
@@ -97,8 +66,6 @@ function DropZoneInput({ title, name, error }: PreviewsProps) {
       unregister(name);
     };
   }, [register, unregister, name]);
-  // const files = watch(name);
-  // console.log(files);
 
   const { getRootProps, getInputProps, isFocused, isDragAccept, isDragReject, isDragActive } = useDropzone({
     onDrop,
@@ -106,37 +73,31 @@ function DropZoneInput({ title, name, error }: PreviewsProps) {
     accept: {
       "image/*": [],
     },
-    // onDrop: (acceptedFiles: any) => {
-    //   setValue(name, acceptedFiles, { shouldValidate: true });
-    //   setFiles(
-    //     acceptedFiles.map((file: any) =>
-    //       Object.assign(file, {
-    //         preview: URL.createObjectURL(file),
-    //       })
-    //     )
-    //   );
-    // },
   });
+
   const thumbs = files.map((file: any) => (
-    <div style={thumb} key={file.name}>
-      <div style={thumbInner}>
+    <div className={styles.thumb} key={file.name}>
+      <div className={styles.thumbInner}>
         <img
           // src={URL.createObjectURL(file)}
           src={file.preview}
-          style={img}
+          className={styles.img}
           // Revoke data uri after image is loaded
           onLoad={() => {
             URL.revokeObjectURL(file.preview);
           }}
         />
+        <div className={styles.thumbDelete}>
+          <DeleteForever
+            onClick={() => {
+              setFiles([]);
+              reset();
+            }}
+          />
+        </div>
       </div>
     </div>
   ));
-
-  // useEffect(() => {
-  //   // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
-  //   return () => files.forEach((file: any) => URL.revokeObjectURL(file.preview));
-  // }, []);
 
   const style: any = useMemo(
     () => ({
@@ -147,16 +108,17 @@ function DropZoneInput({ title, name, error }: PreviewsProps) {
     }),
     [isFocused, isDragAccept, isDragReject]
   );
+  console.log(getInputProps());
 
   return (
     <section className="container">
       <div {...getRootProps({ style })}>
-        <aside style={thumbsContainer}>{thumbs}</aside>
+        <aside className={styles.thumbsContainer}>{thumbs}</aside>
         {isDragActive && <p>Drop Here</p>}
         <input name={name} {...getInputProps()} />
         {files.length < 1 && !isDragActive ? (
           <Stack sx={{ display: "flex", justifyContent: "center", alignItems: "center", cursor: "pointer" }}>
-            <CloudUploadIcon />
+            <CloudUpload />
             {title}
           </Stack>
         ) : null}
@@ -166,5 +128,3 @@ function DropZoneInput({ title, name, error }: PreviewsProps) {
   );
 }
 export default DropZoneInput;
-
-// {...getRootProps({ className: "dropzone" })}
