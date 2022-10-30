@@ -91,3 +91,14 @@ a {
   width: 10px !important;
   background-color: white !important;
 }
+
+input[type="number"]::-webkit-inner-spin-button {
+  display: none;
+}
+
+input[type="number"]::-webkit-outside-spin-button {
+  display: none;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}

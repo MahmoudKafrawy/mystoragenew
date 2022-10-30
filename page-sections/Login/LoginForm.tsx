@@ -3,8 +3,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useTranslation } from "next-i18next";
 import { useAuth } from "../../contexts/AuthContext";
 import styles from "./LoginForm.module.scss";
-import EmailIcon from "@mui/icons-material/Email";
-import LockIcon from "@mui/icons-material/Lock";
+import { Email, Lock } from "@mui/icons-material";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { joiResolver } from "@hookform/resolvers/joi";
@@ -16,8 +15,16 @@ type Inputs = {
 };
 
 const schema = Joi.object({
-  email: Joi.string().min(4).message("4").max(6).message("6").required(),
-  passwrod: Joi.string().min(4).message("4").max(6).message("6").required(),
+  email: Joi.string()
+    .required()
+    .email({ tlds: { allow: false } })
+    .messages({
+      "string.email": "Please enter valid email",
+      "string.empty": "Please enter email",
+    }),
+  password: Joi.string().required().messages({
+    "string.empty": "Please enter password",
+  }),
 });
 
 // const schema = yup
@@ -43,8 +50,6 @@ const LoginFrom = () => {
   };
   const { t } = useTranslation();
 
-  // console.log(watch("email")) // watch input value by passing the name of it
-
   return (
     <>
       <Box className={styles.parent}>
@@ -69,7 +74,7 @@ const LoginFrom = () => {
                     disableUnderline: true,
                     startAdornment: (
                       <InputAdornment position="start">
-                        <EmailIcon />
+                        <Email />
                       </InputAdornment>
                     ),
                   }}
@@ -78,7 +83,7 @@ const LoginFrom = () => {
                 <TextField
                   {...register("password")}
                   type="password"
-                  placeholder="password"
+                  placeholder="Password"
                   variant="standard"
                   fullWidth={true}
                   error={errors?.password ? true : false}
@@ -88,7 +93,7 @@ const LoginFrom = () => {
                     disableUnderline: true,
                     startAdornment: (
                       <InputAdornment position="start">
-                        <LockIcon />
+                        <Lock />
                       </InputAdornment>
                     ),
                   }}

@@ -1,6 +1,5 @@
 import { createTheme, colors, Theme } from "@mui/material";
 
-
 declare module "@mui/material/styles" {
   interface DefaultTheme extends Theme {}
 }
@@ -20,11 +19,8 @@ declare module "@mui/material/styles/createTheme" {
 }
 
 const theme = createTheme({
-  typography:{
-    fontFamily: [
-      'Ubuntu',
-      'cursive',
-    ].join(','),
+  typography: {
+    fontFamily: ["Ubuntu", "cursive"].join(","),
   },
   fonts: {
     primary: "Ubuntu, sans-serif",
@@ -62,7 +58,7 @@ const theme = createTheme({
     MuiTab: {
       defaultProps: {
         sx: {
-          width:"100%",
+          width: "100%",
           alignItems: "flex-start",
           justifyContent: "flex-start",
         },

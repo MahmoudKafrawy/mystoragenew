@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import {
   Box,
   Button,
@@ -15,14 +15,13 @@ import {
   Typography,
 } from "@mui/material";
 import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
-import { FormInputText } from "../../components/controlled/FormInputText";
 import { useTranslation } from "next-i18next";
 import { useAuth } from "../../contexts/AuthContext";
 import styles from "./SignUpForm.module.scss";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import countries from "../../common/countries";
 import { joiResolver } from "@hookform/resolvers/joi";
 import Joi from "joi";
+import DropZoneInput from "../../components/controlled/DropZoneInput";
 
 const SignUpForm = () => {
   const accountType = ["export freight", "Shipping releases", "export customs", "Customs Publications"];
@@ -43,16 +42,37 @@ const SignUpForm = () => {
   };
 
   const schema = Joi.object({
-    firstName: Joi.string().min(4).message("4").max(6).message("6").required(),
-    lastName: Joi.string().min(4).message("4").max(6).message("6").required(),
-    phone: Joi.string().min(4).message("4").max(6).message("6").required(),
-    account: Joi.string().min(4).message("4").max(6).message("6").required(),
-    nationailty: Joi.string().min(4).message("4").max(6).message("6").required(),
-    frontID: Joi.string().min(4).message("4").max(6).message("6").required(),
-    backID: Joi.string().min(4).message("4").max(6).message("6").required(),
-    CommercialNumber: Joi.string().min(4).message("4").max(6).message("6").required(),
-    taxCard: Joi.string().min(4).message("4").max(6).message("6").required(),
-    countryCode: Joi.string().min(4).message("4").max(6).message("6").required(),
+    firstName: Joi.string().empty().required().messages({
+      "string.empty": "Please enter first name",
+    }),
+    lastName: Joi.string().empty().required().messages({
+      "string.empty": "Please enter last name",
+    }),
+    phone: Joi.string().empty().required().messages({
+      "string.empty": "Please enter Phone",
+    }),
+    countryCode: Joi.string().required().messages({
+      "any.required": "Please select code",
+    }),
+    accountType: Joi.string().empty().required().messages({
+      "string.base": "Please select account type",
+    }),
+    nationalID: Joi.string().empty().length(14).required().messages({
+      "string.length": "ID must be 14 number",
+      "string.empty": "Please Enter national id",
+    }),
+    frontID: Joi.array().required().messages({
+      "any.required": "Please upload front ID ",
+    }),
+    backID: Joi.array().required().messages({
+      "any.required": "Please upload back ID ",
+    }),
+    CommercialNumber: Joi.array().required().messages({
+      "any.required": "Please upload Commercial number ",
+    }),
+    taxCard: Joi.array().required().messages({
+      "any.required": "Please upload tax card ",
+    }),
   });
 
   // const {
@@ -122,7 +142,7 @@ const SignUpForm = () => {
                       size="small"
                       inputProps={methods.register("countryCode")}
                       error={methods.formState.errors.countryCode ? true : false}
-                      // helperText={methods.formState.errors.countryCode?.message}
+                      helperText={methods.formState.errors.countryCode?.message}
                     >
                       {countries.map((country) => (
                         <MenuItem key={country.code} value={country.dial_code}>
@@ -134,7 +154,7 @@ const SignUpForm = () => {
                   <Grid item xs={9}>
                     <TextField
                       fullWidth={true}
-                      type="text"
+                      type="number"
                       size="small"
                       {...methods.register("phone")}
                       error={methods.formState.errors?.phone ? true : false}
@@ -164,7 +184,7 @@ const SignUpForm = () => {
                 </Box>
                 <Typography className={styles.subTitle}>National ID</Typography>
                 <TextField
-                  type="text"
+                  type="number"
                   fullWidth={true}
                   size="small"
                   {...methods.register("nationalID")}
@@ -173,14 +193,14 @@ const SignUpForm = () => {
                 />
                 <Grid container spacing={2}>
                   <Grid item xs={6}>
-                    <Previews
+                    <DropZoneInput
                       title="Front National ID"
                       name="frontID"
                       error={methods.formState.errors.frontID?.message?.toString()}
                     />
                   </Grid>
                   <Grid item xs={6}>
-                    <Previews
+                    <DropZoneInput
                       title="Back National ID"
                       name="backID"
                       error={methods.formState.errors.backID?.message?.toString()}
@@ -189,7 +209,7 @@ const SignUpForm = () => {
                 </Grid>
                 <Box>
                   <Typography className={styles.subTitle}>Commercial Record Number</Typography>
-                  <Previews
+                  <DropZoneInput
                     title="Browse"
                     name="CommercialNumber"
                     error={methods.formState.errors.CommercialNumber?.message?.toString()}
@@ -197,7 +217,7 @@ const SignUpForm = () => {
                 </Box>
                 <Box>
                   <Typography className={styles.subTitle}>Tax Card Number</Typography>
-                  <Previews
+                  <DropZoneInput
                     title="Browse"
                     name="taxCard"
                     error={methods.formState.errors.taxCard?.message?.toString()}
@@ -218,169 +238,3 @@ const SignUpForm = () => {
 };
 
 export default SignUpForm;
-
-import { useMemo } from "react";
-
-const baseStyle = {
-  flex: 1,
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  padding: "15px",
-  margin: "10px 0px",
-  borderWidth: 2,
-  borderRadius: 10,
-  borderColor: "#878990",
-  borderStyle: "dashed",
-  backgroundColor: "#fafafa",
-  color: "#bdbdbd",
-  outline: "none",
-  transition: "border .24s ease-in-out",
-};
-
-const focusedStyle = {
-  borderColor: "#2196f3",
-};
-
-const acceptStyle = {
-  borderColor: "#00e676",
-};
-
-const rejectStyle = {
-  borderColor: "#ff1744",
-};
-
-import { useEffect, useState } from "react";
-import { useDropzone } from "react-dropzone";
-
-const thumbsContainer: any = {
-  display: "flex",
-  flexDirection: "row",
-  flexWrap: "wrap",
-};
-
-const thumb: any = {
-  display: "flex",
-  justifyContent: "center",
-  borderRadius: 2,
-  // border: "1px solid #eaeaea",
-  marginBottom: 3,
-  marginRight: 3,
-  width: 100,
-  height: 100,
-  padding: 4,
-  boxSizing: "border-box",
-};
-
-const thumbInner = {
-  display: "flex",
-  minWidth: 0,
-  overflow: "hidden",
-};
-
-const img = {
-  display: "block",
-  width: "auto",
-  height: "100%",
-};
-interface PreviewsProps {
-  title: string;
-  // register: any;
-  name: string;
-  error: string | undefined;
-}
-import { useFormContext } from "react-hook-form";
-
-function Previews({ title, name, error }: PreviewsProps) {
-  const { register, unregister, setValue, watch } = useFormContext();
-  const [files, setFiles] = useState([]);
-
-  const onDrop = useCallback(
-    (droppedFiles: any) => {
-      setFiles(
-        droppedFiles.map((file: any) =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file),
-          })
-        )
-      );
-      setValue(name, droppedFiles, { shouldValidate: true });
-    },
-    [setValue, name]
-  );
-  useEffect(() => {
-    register(name);
-    return () => {
-      unregister(name);
-    };
-  }, [register, unregister, name]);
-  // const files = watch(name);
-  // console.log(files);
-
-  const { getRootProps, getInputProps, isFocused, isDragAccept, isDragReject, isDragActive } = useDropzone({
-    onDrop,
-    maxFiles: 1,
-    accept: {
-      "image/*": [],
-    },
-    // onDrop: (acceptedFiles: any) => {
-    //   setValue(name, acceptedFiles, { shouldValidate: true });
-    //   setFiles(
-    //     acceptedFiles.map((file: any) =>
-    //       Object.assign(file, {
-    //         preview: URL.createObjectURL(file),
-    //       })
-    //     )
-    //   );
-    // },
-  });
-  const thumbs = files.map((file: any) => (
-    <div style={thumb} key={file.name}>
-      <div style={thumbInner}>
-        <img
-          // src={URL.createObjectURL(file)}
-          src={file.preview}
-          style={img}
-          // Revoke data uri after image is loaded
-          onLoad={() => {
-            URL.revokeObjectURL(file.preview);
-          }}
-        />
-      </div>
-    </div>
-  ));
-
-  // useEffect(() => {
-  //   // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
-  //   return () => files.forEach((file: any) => URL.revokeObjectURL(file.preview));
-  // }, []);
-
-  const style: any = useMemo(
-    () => ({
-      ...baseStyle,
-      ...(isFocused ? focusedStyle : {}),
-      ...(isDragAccept ? acceptStyle : {}),
-      ...(isDragReject ? rejectStyle : {}),
-    }),
-    [isFocused, isDragAccept, isDragReject]
-  );
-
-  return (
-    <section className="container">
-      <div {...getRootProps({ style })}>
-        <aside style={thumbsContainer}>{thumbs}</aside>
-        {isDragActive && <p>Drop Here</p>}
-        <input name={name} {...getInputProps()} />
-        {files.length < 1 && !isDragActive ? (
-          <Stack sx={{ display: "flex", justifyContent: "center", alignItems: "center", cursor: "pointer" }}>
-            <CloudUploadIcon />
-            {title}
-          </Stack>
-        ) : null}
-      </div>
-      {error && <p className={styles.errorMsg}>{error}</p>}
-    </section>
-  );
-}
-
-// {...getRootProps({ className: "dropzone" })}
